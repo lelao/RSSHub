@@ -5744,7 +5744,7 @@
         "module": "() => import('@/routes/abc/index.ts')"
       }
     },
-    "name": "ABC News",
+    "name": "ABC News (Australian Broadcasting Corporation)",
     "apiRoutes": {},
     "url": "abc.net.au",
     "lang": "en"
@@ -7178,6 +7178,30 @@
     "name": "安徽建筑大学",
     "url": "news.ahjzu.edu.cn",
     "lang": "zh-CN"
+  },
+  "aiaa": {
+    "routes": {
+      "/journal/:journalID": {
+        "name": "ASR Articles",
+        "maintainers": [
+          "HappyZhu99"
+        ],
+        "categories": [
+          "journal"
+        ],
+        "path": "/journal/:journalID",
+        "parameters": {
+          "journalID": "journal ID, can be found in the URL"
+        },
+        "example": "/aiaa/journal/aiaaj",
+        "location": "journal.ts",
+        "module": "() => import('@/routes/aiaa/journal.ts')"
+      }
+    },
+    "name": "AIAA Aerospace Research Central",
+    "apiRoutes": {},
+    "url": "arc.aiaa.org",
+    "lang": "en"
   },
   "aibase": {
     "routes": {
@@ -10823,7 +10847,7 @@
           "EkkoG",
           "nczitzk"
         ],
-        "description": "\n::: tip\n  For example, the URL of [GarageBand](https://apps.apple.com/us/app/messages/id408709785) in the App Store is `https://apps.apple.com/us/app/messages/id408709785`. In this case, the `App Store Country` parameter for the route is `us`, and the `App id` parameter is `id1146560473`. So the route should be [`/apple/apps/update/us/id408709785`](https://rsshub.app/apple/apps/update/us/id408709785).\n:::",
+        "description": "\n::: tip\n  For example, the URL of [GarageBand](https://apps.apple.com/us/app/garageband/id408709785) in the App Store is `https://apps.apple.com/us/app/garageband/id408709785`. In this case, the `App Store Country` parameter for the route is `us`, and the `App id` parameter is `id408709785`. So the route should be [`/apple/apps/update/us/id408709785`](https://rsshub.app/apple/apps/update/us/id408709785).\n:::",
         "location": "apps.ts",
         "module": "() => import('@/routes/apple/apps.ts')"
       },
@@ -12477,6 +12501,42 @@
     ],
     "description": "",
     "lang": "en"
+  },
+  "azurlane": {
+    "routes": {
+      "/news/:server/:type?": {
+        "path": "/news/:server/:type?",
+        "name": "News",
+        "categories": [
+          "game"
+        ],
+        "maintainers": [
+          "AnitsuriW"
+        ],
+        "example": "/azurlane/news/jp/0",
+        "parameters": {
+          "server": "game server (ISO 3166 two-letter country code, case-insensitive), only `JP` is supported for now",
+          "type": "news type, see the table below, `0` by default"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "description": "| すべて | お知らせ | イベント | メインテナンス | 重要 |\n| :--: | :--: | :--: | :--: | :--: |\n| 0 | 1 | 2 | 3 | 4 |",
+        "location": "news.ts",
+        "module": "() => import('@/routes/azurlane/news.ts')"
+      }
+    },
+    "name": "Azur Lane",
+    "url": "azurlane.jp",
+    "categories": [
+      "game"
+    ],
+    "lang": "ja"
   },
   "baai": {
     "routes": {
@@ -16276,8 +16336,8 @@
         "location": "popular.ts",
         "module": "() => import('@/routes/bilibili/popular.ts')"
       },
-      "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?": {
-        "path": "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?",
+      "/ranking/:rid?/:embed?/:redirect1?/:redirect2?": {
+        "path": "/ranking/:rid?/:embed?/:redirect1?/:redirect2?",
         "name": "排行榜",
         "maintainers": [
           "DIYgod",
@@ -16288,94 +16348,86 @@
           "popular"
         ],
         "view": 3,
-        "example": "/bilibili/ranking/0",
+        "example": "/bilibili/ranking/all",
         "parameters": {
-          "rid_index": {
-            "description": "排行榜分区 id 序号",
-            "default": "0",
+          "rid": {
+            "description": "排行榜分区代号或 rid，可在 URL 中找到",
+            "default": "all",
             "options": [
               {
-                "value": "0",
+                "value": "all",
                 "label": "全站"
               },
               {
-                "value": "3",
-                "label": "国创相关"
-              },
-              {
-                "value": "5",
-                "label": "动画"
-              },
-              {
-                "value": "6",
-                "label": "音乐"
-              },
-              {
-                "value": "7",
-                "label": "舞蹈"
-              },
-              {
-                "value": "8",
-                "label": "游戏"
-              },
-              {
-                "value": "9",
-                "label": "知识"
-              },
-              {
-                "value": "10",
-                "label": "科技"
-              },
-              {
-                "value": "11",
-                "label": "运动"
-              },
-              {
-                "value": "12",
-                "label": "汽车"
-              },
-              {
-                "value": "13",
-                "label": "生活"
-              },
-              {
-                "value": "14",
-                "label": "美食"
-              },
-              {
-                "value": "15",
-                "label": "动物圈"
-              },
-              {
-                "value": "16",
-                "label": "鬼畜"
-              },
-              {
-                "value": "17",
-                "label": "时尚"
-              },
-              {
-                "value": "18",
-                "label": "娱乐"
-              },
-              {
-                "value": "19",
+                "value": "cinephile",
                 "label": "影视"
               },
               {
-                "value": "23",
-                "label": "原创"
+                "value": "ent",
+                "label": "娱乐"
               },
               {
-                "value": "24",
-                "label": "新人"
+                "value": "music",
+                "label": "音乐"
+              },
+              {
+                "value": "dance",
+                "label": "舞蹈"
+              },
+              {
+                "value": "douga",
+                "label": "动画"
+              },
+              {
+                "value": "kichiku",
+                "label": "鬼畜"
+              },
+              {
+                "value": "game",
+                "label": "游戏"
+              },
+              {
+                "value": "knowledge",
+                "label": "知识"
+              },
+              {
+                "value": "tech",
+                "label": "科技数码"
+              },
+              {
+                "value": "car",
+                "label": "汽车"
+              },
+              {
+                "value": "fashion",
+                "label": "时尚美妆"
+              },
+              {
+                "value": "sports",
+                "label": "体育运动"
+              },
+              {
+                "value": "food",
+                "label": "美食"
+              },
+              {
+                "value": "animal",
+                "label": "动物"
               }
             ]
           },
-          "embed": "默认为开启内嵌视频, 任意值为关闭",
+          "embed": "默认为开启内嵌视频，任意值为关闭",
           "redirect1": "留空，用于兼容之前的路由",
           "redirect2": "留空，用于兼容之前的路由"
         },
+        "radar": [
+          {
+            "source": [
+              "www.bilibili.com/v/popular/rank/:rid"
+            ],
+            "target": "/ranking/:rid"
+          }
+        ],
         "location": "ranking.ts",
         "module": "() => import('@/routes/bilibili/ranking.ts')"
       },
@@ -25606,12 +25658,25 @@
         ],
         "example": "/cjlu/yjsy/yjstz",
         "parameters": {
-          "cate": "订阅的类型，支持 yjstz（研究生通知）和 jstz（教师通知）"
+          "cate": {
+            "description": "订阅的类型，支持 yjstz（研究生通知）和 jstz（教师通知）",
+            "default": "yjstz",
+            "options": [
+              {
+                "label": "教师通知",
+                "value": "jstz"
+              },
+              {
+                "label": "研究生通知",
+                "value": "yjstz"
+              }
+            ]
+          }
         },
         "features": {
           "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
+          "requirePuppeteer": true,
+          "antiCrawler": true,
           "supportRadar": true,
           "supportBT": false,
           "supportPodcast": false,
@@ -26829,10 +26894,405 @@
   },
   "cnljxh": {
     "routes": {
-      "/:category?/:id?": {
-        "path": "/:category?/:id?",
-        "name": "Unknown",
-        "maintainers": [],
+      "/news/:id?": {
+        "path": "/news/:id?",
+        "name": "栏目",
+        "url": "www.cnljxh.org.cn",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/cnljxh/news/10",
+        "parameters": {
+          "category": {
+            "description": "分类，默认为 `10`，即协会公告，可在对应分类页 URL 中找到",
+            "options": [
+              {
+                "label": "协会专区 - 协会简介",
+                "value": "24"
+              },
+              {
+                "label": "协会专区 - 协会章程",
+                "value": "25"
+              },
+              {
+                "label": "协会专区 - 协会领导",
+                "value": "26"
+              },
+              {
+                "label": "协会专区 - 入会程序",
+                "value": "27"
+              },
+              {
+                "label": "协会专区 - 组织机构",
+                "value": "28"
+              },
+              {
+                "label": "协会专区 - 理事会员",
+                "value": "29"
+              },
+              {
+                "label": "协会专区 - 监事会",
+                "value": "32"
+              },
+              {
+                "label": "协会专区 - 专家委员会",
+                "value": "30"
+              },
+              {
+                "label": "协会公告",
+                "value": "10"
+              },
+              {
+                "label": "行业新闻 - 协会动态",
+                "value": "8"
+              },
+              {
+                "label": "行业新闻 - 企业动态",
+                "value": "9"
+              },
+              {
+                "label": "行业新闻 - 行业动态",
+                "value": "11"
+              },
+              {
+                "label": "政策法规 - 政策法规",
+                "value": "12"
+              },
+              {
+                "label": "行业标准 - 国家标准",
+                "value": "13"
+              },
+              {
+                "label": "行业标准 - 行业标准",
+                "value": "14"
+              },
+              {
+                "label": "行业标准 - 团体标准",
+                "value": "15"
+              },
+              {
+                "label": "减污降碳 - 超低排放",
+                "value": "33"
+              },
+              {
+                "label": "减污降碳 - 技术广角",
+                "value": "16"
+              },
+              {
+                "label": "市场价格 - 价格行情",
+                "value": "299"
+              },
+              {
+                "label": "市场价格 - 双焦运费",
+                "value": "2143"
+              },
+              {
+                "label": "市场价格 - 价格汇总",
+                "value": "10039"
+              },
+              {
+                "label": "分析数据 - 市场分析",
+                "value": "575"
+              },
+              {
+                "label": "分析数据 - 一周评述",
+                "value": "5573"
+              },
+              {
+                "label": "分析数据 - 核心数据",
+                "value": "5417"
+              },
+              {
+                "label": "价格指数 - 焦炭指数(MyCpic)",
+                "value": "5575"
+              },
+              {
+                "label": "价格指数 - 炼焦煤指数(MyCpic)",
+                "value": "5907"
+              },
+              {
+                "label": "价格指数 - 山西焦炭价格指数（SCSPI）",
+                "value": "34"
+              },
+              {
+                "label": "价格指数 - 中价·新华焦煤价格指数（CCP）",
+                "value": "35"
+              },
+              {
+                "label": "市场信息 - 汾渭",
+                "value": "19"
+              },
+              {
+                "label": "市场信息 - 化工宝",
+                "value": "20"
+              },
+              {
+                "label": "市场信息 - 百川",
+                "value": "21"
+              },
+              {
+                "label": "市场信息 - 焦化市场信息",
+                "value": "22"
+              },
+              {
+                "label": "市场信息 - 中国焦化信息",
+                "value": "31"
+              }
+            ]
+          }
+        },
+        "description": ":::tip\n订阅 [协会公告](https://www.cnljxh.org.cn/news/?classid=10)，其源网址为 `https://www.cnljxh.org.cn/news/?classid=10`，请参考该 URL 指定部分构成参数，此时路由为 [`/cnljxh/news/10`](https://rsshub.app/cnljxh/news/10)。\n:::\n\n<details>\n  <summary>更多分类</summary>\n\n  #### 协会专区\n\n  | [协会简介](https://www.cnljxh.org.cn/news/?classid=24) | [协会章程](https://www.cnljxh.org.cn/news/?classid=25) | [协会领导](https://www.cnljxh.org.cn/news/?classid=26) | [入会程序](https://www.cnljxh.org.cn/news/?classid=27) | [组织机构](https://www.cnljxh.org.cn/news/?classid=28) |\n  | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |\n  | [24](https://rsshub.app/cnljxh/news/24)                | [25](https://rsshub.app/cnljxh/news/25)                | [26](https://rsshub.app/cnljxh/news/26)                | [27](https://rsshub.app/cnljxh/news/27)                | [28](https://rsshub.app/cnljxh/news/28)                |\n\n  | [理事会员](https://www.cnljxh.org.cn/news/?classid=29) | [监事会](https://www.cnljxh.org.cn/news/?classid=32) | [专家委员会](https://www.cnljxh.org.cn/news/?classid=30) |\n  | ------------------------------------------------------ | ---------------------------------------------------- | -------------------------------------------------------- |\n  | [29](https://rsshub.app/cnljxh/news/29)                | [32](https://rsshub.app/cnljxh/news/32)              | [30](https://rsshub.app/cnljxh/news/30)                  |\n\n  #### 协会公告\n\n  | [协会公告](https://www.cnljxh.org.cn/news/?classid=10) |\n  | ------------------------------------------------------ |\n  | [10](https://rsshub.app/cnljxh/news/10)                |\n\n  #### 行业新闻\n\n  | [协会动态](https://www.cnljxh.org.cn/news/?classid=8) | [企业动态](https://www.cnljxh.org.cn/news/?classid=9) | [行业动态](https://www.cnljxh.org.cn/news/?classid=11) |\n  | ----------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------ |\n  | [8](https://rsshub.app/cnljxh/news/8)                 | [9](https://rsshub.app/cnljxh/news/9)                 | [11](https://rsshub.app/cnljxh/news/11)                |\n\n  #### 政策法规\n\n  | [政策法规](https://www.cnljxh.org.cn/news/?classid=12) |\n  | ------------------------------------------------------ |\n  | [12](https://rsshub.app/cnljxh/news/12)                |\n\n  #### 行业标准\n\n  | [国家标准](https://www.cnljxh.org.cn/news/?classid=13) | [行业标准](https://www.cnljxh.org.cn/news/?classid=14) | [团体标准](https://www.cnljxh.org.cn/news/?classid=15) |\n  | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |\n  | [13](https://rsshub.app/cnljxh/news/13)                | [14](https://rsshub.app/cnljxh/news/14)                | [15](https://rsshub.app/cnljxh/news/15)                |\n\n  #### 减污降碳\n\n  | [超低排放](https://www.cnljxh.org.cn/news/indexdp.php?classid=33) | [技术广角](https://www.cnljxh.org.cn/news/?classid=16) |\n  | ----------------------------------------------------------------- | ------------------------------------------------------ |\n  | [33](https://rsshub.app/cnljxh/news/33)                           | [16](https://rsshub.app/cnljxh/news/16)                |\n\n  #### 市场价格\n\n  | [价格行情](https://www.cnljxh.org.cn/price/?classid=299) | [双焦运费](https://www.cnljxh.org.cn/price/?classid=2143) | [价格汇总](https://www.cnljxh.org.cn/collect/?classid=10039) |\n  | -------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------ |\n  | [299](https://rsshub.app/cnljxh/news/299)                | [2143](https://rsshub.app/cnljxh/news/2143)               | [10039](https://rsshub.app/cnljxh/news/10039)                |\n\n  #### 分析数据\n\n  | [市场分析](https://www.cnljxh.org.cn/info/?classid=575) | [一周评述](https://www.cnljxh.org.cn/info/?classid=5573) | [核心数据](https://www.cnljxh.org.cn/info/?classid=5417) |\n  | ------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |\n  | [575](https://rsshub.app/cnljxh/news/575)               | [5573](https://rsshub.app/cnljxh/news/5573)              | [5417](https://rsshub.app/cnljxh/news/5417)              |\n\n  #### 价格指数\n\n  | [焦炭指数(MyCpic)](https://www.cnljxh.org.cn/date/?classid=5575) | [炼焦煤指数(MyCpic)](https://www.cnljxh.org.cn/date/?classid=5907) | [山西焦炭价格指数（SCSPI）](https://www.cnljxh.org.cn/news/index.php?classid=34) | [中价·新华焦煤价格指数（CCP）](https://www.cnljxh.org.cn/news/index.php?classid=35) |\n  | ---------------------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |\n  | [5575](https://rsshub.app/cnljxh/news/5575)                      | [5907](https://rsshub.app/cnljxh/news/5907)                        | [34](https://rsshub.app/cnljxh/news/34)                                          | [35](https://rsshub.app/cnljxh/news/35)                                             |\n\n  #### 市场信息\n\n  | [汾渭](https://www.cnljxh.org.cn/news/?classid=19) | [化工宝](https://www.cnljxh.org.cn/news/?classid=20) | [百川](https://www.cnljxh.org.cn/news/?classid=21) | [焦化市场信息](https://www.cnljxh.org.cn/news/?classid=22) | [中国焦化信息](https://www.cnljxh.org.cn/news/?classid=31) |\n  | -------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |\n  | [19](https://rsshub.app/cnljxh/news/19)            | [20](https://rsshub.app/cnljxh/news/20)              | [21](https://rsshub.app/cnljxh/news/21)            | [22](https://rsshub.app/cnljxh/news/22)                    | [31](https://rsshub.app/cnljxh/news/31)                    |\n\n</details>\n",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.cnljxh.org.cn/news"
+            ]
+          },
+          {
+            "title": "协会专区 - 协会简介",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=24"
+            ],
+            "target": "/news/24"
+          },
+          {
+            "title": "协会专区 - 协会章程",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=25"
+            ],
+            "target": "/news/25"
+          },
+          {
+            "title": "协会专区 - 协会领导",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=26"
+            ],
+            "target": "/news/26"
+          },
+          {
+            "title": "协会专区 - 入会程序",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=27"
+            ],
+            "target": "/news/27"
+          },
+          {
+            "title": "协会专区 - 组织机构",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=28"
+            ],
+            "target": "/news/28"
+          },
+          {
+            "title": "协会专区 - 理事会员",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=29"
+            ],
+            "target": "/news/29"
+          },
+          {
+            "title": "协会专区 - 监事会",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=32"
+            ],
+            "target": "/news/32"
+          },
+          {
+            "title": "协会专区 - 专家委员会",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=30"
+            ],
+            "target": "/news/30"
+          },
+          {
+            "title": "协会公告",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=10"
+            ],
+            "target": "/news/10"
+          },
+          {
+            "title": "行业新闻 - 协会动态",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=8"
+            ],
+            "target": "/news/8"
+          },
+          {
+            "title": "行业新闻 - 企业动态",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=9"
+            ],
+            "target": "/news/9"
+          },
+          {
+            "title": "行业新闻 - 行业动态",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=11"
+            ],
+            "target": "/news/11"
+          },
+          {
+            "title": "政策法规",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=12"
+            ],
+            "target": "/news/12"
+          },
+          {
+            "title": "行业标准 - 国家标准",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=13"
+            ],
+            "target": "/news/13"
+          },
+          {
+            "title": "行业标准 - 行业标准",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=14"
+            ],
+            "target": "/news/14"
+          },
+          {
+            "title": "行业标准 - 团体标准",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=15"
+            ],
+            "target": "/news/15"
+          },
+          {
+            "title": "减污降碳 - 超低排放",
+            "source": [
+              "www.cnljxh.org.cn/news/indexdp.php?classid=33"
+            ],
+            "target": "/news/33"
+          },
+          {
+            "title": "减污降碳 - 技术广角",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=16"
+            ],
+            "target": "/news/16"
+          },
+          {
+            "title": "市场价格 - 价格行情",
+            "source": [
+              "www.cnljxh.org.cn/price/?classid=299"
+            ],
+            "target": "/news/299"
+          },
+          {
+            "title": "市场价格 - 双焦运费",
+            "source": [
+              "www.cnljxh.org.cn/price/?classid=2143"
+            ],
+            "target": "/news/2143"
+          },
+          {
+            "title": "市场价格 - 价格汇总",
+            "source": [
+              "www.cnljxh.org.cn/collect/?classid=10039"
+            ],
+            "target": "/news/10039"
+          },
+          {
+            "title": "分析数据 - 市场分析",
+            "source": [
+              "www.cnljxh.org.cn/info/?classid=575"
+            ],
+            "target": "/news/575"
+          },
+          {
+            "title": "分析数据 - 一周评述",
+            "source": [
+              "www.cnljxh.org.cn/info/?classid=5573"
+            ],
+            "target": "/news/5573"
+          },
+          {
+            "title": "分析数据 - 核心数据",
+            "source": [
+              "www.cnljxh.org.cn/info/?classid=5417"
+            ],
+            "target": "/news/5417"
+          },
+          {
+            "title": "价格指数 - 焦炭指数(MyCpic)",
+            "source": [
+              "www.cnljxh.org.cn/date/?classid=5575"
+            ],
+            "target": "/news/5575"
+          },
+          {
+            "title": "价格指数 - 炼焦煤指数(MyCpic)",
+            "source": [
+              "www.cnljxh.org.cn/date/?classid=5907"
+            ],
+            "target": "/news/5907"
+          },
+          {
+            "title": "价格指数 - 山西焦炭价格指数（SCSPI）",
+            "source": [
+              "www.cnljxh.org.cn/news/index.php?classid=34"
+            ],
+            "target": "/news/34"
+          },
+          {
+            "title": "价格指数 - 中价·新华焦煤价格指数（CCP）",
+            "source": [
+              "www.cnljxh.org.cn/news/index.php?classid=35"
+            ],
+            "target": "/news/35"
+          },
+          {
+            "title": "市场信息 - 汾渭",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=19"
+            ],
+            "target": "/news/19"
+          },
+          {
+            "title": "市场信息 - 化工宝",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=20"
+            ],
+            "target": "/news/20"
+          },
+          {
+            "title": "市场信息 - 百川",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=21"
+            ],
+            "target": "/news/21"
+          },
+          {
+            "title": "市场信息 - 焦化市场信息",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=22"
+            ],
+            "target": "/news/22"
+          },
+          {
+            "title": "市场信息 - 中国焦化信息",
+            "source": [
+              "www.cnljxh.org.cn/news/?classid=31"
+            ],
+            "target": "/news/31"
+          }
+        ],
+        "view": 0,
         "location": "index.ts",
         "module": "() => import('@/routes/cnljxh/index.ts')"
       }
@@ -26914,6 +27374,169 @@
     "name": "CNTV",
     "apiRoutes": {},
     "url": "navi.cctv.com",
+    "lang": "zh-CN"
+  },
+  "cnu": {
+    "routes": {
+      "/iec": {
+        "path": "/iec",
+        "categories": [
+          "university"
+        ],
+        "example": "/cnu/iec",
+        "parameters": {},
+        "radar": [
+          {
+            "source": [
+              "iec.cnu.edu.cn/ggml/tzgg1/index.htm"
+            ],
+            "target": "/cnu/iec"
+          }
+        ],
+        "name": "信息工程学院通知公告",
+        "maintainers": [
+          "liueic"
+        ],
+        "url": "iec.cnu.edu.cn/ggml/tzgg1/index.htm",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "location": "iec.ts",
+        "module": "() => import('@/routes/cnu/iec.ts')"
+      },
+      "/jdxw": {
+        "path": "/jdxw",
+        "categories": [
+          "university"
+        ],
+        "example": "/cnu/jdxw",
+        "parameters": {},
+        "radar": [
+          {
+            "source": [
+              "news.cnu.edu.cn/xysx/jdxw/index.htm"
+            ],
+            "target": "/cnu/jdxw"
+          }
+        ],
+        "name": "焦点关注",
+        "maintainers": [
+          "liueic"
+        ],
+        "url": "news.cnu.edu.cn/xysx/jdxw/index.htm",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "location": "jdxw.ts",
+        "module": "() => import('@/routes/cnu/jdxw.ts')"
+      },
+      "/jwc": {
+        "path": "/jwc",
+        "categories": [
+          "university"
+        ],
+        "example": "/cnu/jwc",
+        "parameters": {},
+        "radar": [
+          {
+            "source": [
+              "jwc.cnu.edu.cn/tzgg/index.htm"
+            ],
+            "target": "/cnu/jwc"
+          }
+        ],
+        "name": "教务处通知公示",
+        "maintainers": [
+          "liueic"
+        ],
+        "url": "jwc.cnu.edu.cn/tzgg/index.htm",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "location": "jwc.ts",
+        "module": "() => import('@/routes/cnu/jwc.ts')"
+      },
+      "/physics": {
+        "path": "/physics",
+        "categories": [
+          "university"
+        ],
+        "example": "/cnu/physics",
+        "parameters": {},
+        "radar": [
+          {
+            "source": [
+              "physics.cnu.edu.cn/news/index.htm"
+            ],
+            "target": "/cnu/physics"
+          }
+        ],
+        "name": "物理系院系新闻",
+        "maintainers": [
+          "liueic"
+        ],
+        "url": "physics.cnu.edu.cn/news/index.htm",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "location": "physics.ts",
+        "module": "() => import('@/routes/cnu/physics.ts')"
+      },
+      "/smkxxy": {
+        "path": "/smkxxy",
+        "categories": [
+          "university"
+        ],
+        "example": "/cnu/smkxxy",
+        "parameters": {},
+        "radar": [
+          {
+            "source": [
+              "smkxxy.cnu.edu.cn/tzgg3/index.htm"
+            ],
+            "target": "/cnu/smkxxy"
+          }
+        ],
+        "name": "生命科学学院通知公告",
+        "maintainers": [
+          "liueic"
+        ],
+        "url": "smkxxy.cnu.edu.cn/tzgg3/index.htm",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "location": "smkxxy.ts",
+        "module": "() => import('@/routes/cnu/smkxxy.ts')"
+      }
+    },
+    "name": "首都师范大学",
+    "apiRoutes": {},
+    "url": "cnu.edu.cn",
     "lang": "zh-CN"
   },
   "cockroachlabs": {
@@ -27025,6 +27648,44 @@
     "apiRoutes": {},
     "url": "codeforces.com",
     "lang": "en"
+  },
+  "cognition": {
+    "name": "cognition",
+    "routes": {
+      "/blog": {
+        "path": "/blog",
+        "name": "Blog",
+        "url": "cognition.ai/blog",
+        "maintainers": [
+          "Loongphy"
+        ],
+        "example": "/cognition/blog",
+        "categories": [
+          "programming"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "cognition.ai/blog/1"
+            ],
+            "target": "/blog"
+          }
+        ],
+        "view": 0,
+        "location": "blog.ts",
+        "module": "() => import('@/routes/cognition/blog.ts')"
+      }
+    },
+    "apiRoutes": {}
   },
   "cohere": {
     "routes": {
@@ -28481,6 +29142,49 @@
     "url": "cqgas.cn",
     "lang": "zh-CN"
   },
+  "cqu": {
+    "routes": {
+      "/jwc/:path{.+}?": {
+        "path": "/jwc/:path{.+}?",
+        "categories": [
+          "university"
+        ],
+        "example": "/cqu/jwc/index/tzgg",
+        "parameters": {
+          "path": {
+            "description": "路径参数，默认为 `index/tzgg`",
+            "default": "index/tzgg"
+          }
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "jwc.cqu.edu.cn/:path"
+            ],
+            "target": "/jwc/:path"
+          }
+        ],
+        "name": "本科教学信息网通知",
+        "maintainers": [
+          "AhsokaTano26"
+        ],
+        "location": "index.ts",
+        "module": "() => import('@/routes/cqu/index.ts')"
+      }
+    },
+    "name": "重庆大学",
+    "apiRoutes": {},
+    "url": "cqu.edu.cn",
+    "lang": "zh-CN"
+  },
   "cqwu": {
     "routes": {
       "/news/:type?": {
@@ -29212,6 +29916,75 @@
     "url": "career.csu.edu.cn",
     "lang": "zh-CN"
   },
+  "csust": {
+    "routes": {
+      "/tggs": {
+        "path": "/tggs",
+        "categories": [
+          "university"
+        ],
+        "example": "/csust/tggs",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.csust.edu.cn/tggs.htm",
+              "www.csust.edu.cn/"
+            ]
+          }
+        ],
+        "name": "通告公示",
+        "maintainers": [
+          "powerfullz"
+        ],
+        "url": "www.csust.edu.cn/tggs.htm",
+        "location": "tggs.ts",
+        "module": "() => import('@/routes/csust/tggs.ts')"
+      },
+      "/xkxs": {
+        "path": "/xkxs",
+        "categories": [
+          "university"
+        ],
+        "example": "/csust/xkxs",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.csust.edu.cn/xkxs.htm",
+              "www.csust.edu.cn/"
+            ]
+          }
+        ],
+        "name": "学科学术",
+        "maintainers": [
+          "powerfullz"
+        ],
+        "url": "www.csust.edu.cn/xkxs.htm",
+        "location": "xkxs.ts",
+        "module": "() => import('@/routes/csust/xkxs.ts')"
+      }
+    },
+    "name": "长沙理工大学",
+    "url": "www.csust.edu.cn",
+    "lang": "zh-CN"
+  },
   "ctbu": {
     "routes": {
       "/xxgg": {
@@ -29249,6 +30022,49 @@
     "name": "重庆工商大学",
     "url": "www.ctbu.edu.cn/",
     "lang": "zh-CN"
+  },
+  "ctinews": {
+    "routes": {
+      "/topic/:topic?": {
+        "path": "/topic/:topic?",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/ctinews/topic/KDdek5vgXx",
+        "parameters": {
+          "topic": "話題 ID，可在 URL 中獲取，留空為 `KDdek5vgXx`"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "ctinews.com/news/topics/:topic",
+              "ctinews.com"
+            ]
+          }
+        ],
+        "name": "話題",
+        "maintainers": [
+          "TonyRL"
+        ],
+        "url": "ctinews.com",
+        "location": "topic.ts",
+        "module": "() => import('@/routes/ctinews/topic.ts')"
+      }
+    },
+    "name": "中天新聞網",
+    "url": "ctinews.com",
+    "categories": [
+      "new-media"
+    ],
+    "lang": "zh-TW"
   },
   "cts": {
     "routes": {
@@ -32563,6 +33379,419 @@
     "name": "东莞教研网",
     "apiRoutes": {},
     "url": "dgjyw.com",
+    "lang": "zh-CN"
+  },
+  "dgtle": {
+    "routes": {
+      "/article/:id?/:pushed?": {
+        "path": "/article/:id?/:pushed?",
+        "name": "文章",
+        "url": "www.dgtle.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/dgtle/article/0/0",
+        "parameters": {
+          "id": {
+            "description": "分类，默认为 `0`，即最新，可在下表中找到",
+            "options": [
+              {
+                "label": "全部",
+                "value": "0"
+              },
+              {
+                "label": "数码",
+                "value": "20"
+              },
+              {
+                "label": "手机",
+                "value": "18"
+              },
+              {
+                "label": "平板",
+                "value": "4"
+              },
+              {
+                "label": "笔电",
+                "value": "17"
+              },
+              {
+                "label": "影音",
+                "value": "5"
+              },
+              {
+                "label": "汽车",
+                "value": "401"
+              },
+              {
+                "label": "视频",
+                "value": "395"
+              },
+              {
+                "label": "摄影",
+                "value": "22"
+              },
+              {
+                "label": "露营",
+                "value": "405"
+              },
+              {
+                "label": "家装",
+                "value": "402"
+              },
+              {
+                "label": "活动",
+                "value": "138"
+              },
+              {
+                "label": "生活",
+                "value": "34"
+              },
+              {
+                "label": "旅行",
+                "value": "137"
+              },
+              {
+                "label": "骑行",
+                "value": "412"
+              },
+              {
+                "label": "游戏",
+                "value": "411"
+              },
+              {
+                "label": "宠物",
+                "value": "407"
+              },
+              {
+                "label": "时尚",
+                "value": "406"
+              },
+              {
+                "label": "运动",
+                "value": "403"
+              },
+              {
+                "label": "应用",
+                "value": "135"
+              },
+              {
+                "label": "玩物",
+                "value": "75"
+              },
+              {
+                "label": "周边",
+                "value": "19"
+              },
+              {
+                "label": "文具",
+                "value": "7"
+              },
+              {
+                "label": "官方",
+                "value": "400"
+              }
+            ]
+          },
+          "pushed": {
+            "description": "推送排序，默认为 `0`，即最新发布",
+            "options": [
+              {
+                "label": "最新发布",
+                "value": "0"
+              },
+              {
+                "label": "首页推荐",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        "description": ":::tip\n订阅 [数码](https://www.dgtle.com/article)，其对应分类 ID 为 `20`，此时路由为 [`/dgtle/article/20`](https://rsshub.app/dgtle/article/20)。\n:::\n\n<details>\n  <summary>更多分类</summary>\n\n  | [全部](https://www.dgtle.com/article)   | [数码](https://www.dgtle.com/article)     | [手机](https://www.dgtle.com/article)     | [平板](https://www.dgtle.com/article)   | [笔电](https://www.dgtle.com/article)     |\n  | --------------------------------------- | ----------------------------------------- | ----------------------------------------- | --------------------------------------- | ----------------------------------------- |\n  | [0](https://rsshub.app/dgtle/article/0) | [20](https://rsshub.app/dgtle/article/20) | [18](https://rsshub.app/dgtle/article/18) | [4](https://rsshub.app/dgtle/article/4) | [17](https://rsshub.app/dgtle/article/17) |\n\n  | [影音](https://www.dgtle.com/article)   | [汽车](https://www.dgtle.com/article)       | [视频](https://www.dgtle.com/article)       | [摄影](https://www.dgtle.com/article)     | [露营](https://www.dgtle.com/article)       |\n  | --------------------------------------- | ------------------------------------------- | ------------------------------------------- | ----------------------------------------- | ------------------------------------------- |\n  | [5](https://rsshub.app/dgtle/article/5) | [401](https://rsshub.app/dgtle/article/401) | [395](https://rsshub.app/dgtle/article/395) | [22](https://rsshub.app/dgtle/article/22) | [405](https://rsshub.app/dgtle/article/405) |\n\n  | [家装](https://www.dgtle.com/article)       | [活动](https://www.dgtle.com/article)       | [生活](https://www.dgtle.com/article)     | [旅行](https://www.dgtle.com/article)       | [骑行](https://www.dgtle.com/article)       |\n  | ------------------------------------------- | ------------------------------------------- | ----------------------------------------- | ------------------------------------------- | ------------------------------------------- |\n  | [402](https://rsshub.app/dgtle/article/402) | [138](https://rsshub.app/dgtle/article/138) | [34](https://rsshub.app/dgtle/article/34) | [137](https://rsshub.app/dgtle/article/137) | [412](https://rsshub.app/dgtle/article/412) |\n\n  | [游戏](https://www.dgtle.com/article)       | [宠物](https://www.dgtle.com/article)       | [时尚](https://www.dgtle.com/article)       | [运动](https://www.dgtle.com/article)       | [应用](https://www.dgtle.com/article)       |\n  | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |\n  | [411](https://rsshub.app/dgtle/article/411) | [407](https://rsshub.app/dgtle/article/407) | [406](https://rsshub.app/dgtle/article/406) | [403](https://rsshub.app/dgtle/article/403) | [135](https://rsshub.app/dgtle/article/135) |\n\n  | [玩物](https://www.dgtle.com/article)     | [周边](https://www.dgtle.com/article)     | [文具](https://www.dgtle.com/article)   | [官方](https://www.dgtle.com/article)       |\n  | ----------------------------------------- | ----------------------------------------- | --------------------------------------- | ------------------------------------------- |\n  | [75](https://rsshub.app/dgtle/article/75) | [19](https://rsshub.app/dgtle/article/19) | [7](https://rsshub.app/dgtle/article/7) | [400](https://rsshub.app/dgtle/article/400) |\n\n</details>\n",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article"
+          },
+          {
+            "title": "全部",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/0"
+          },
+          {
+            "title": "数码",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/20"
+          },
+          {
+            "title": "手机",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/18"
+          },
+          {
+            "title": "平板",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/4"
+          },
+          {
+            "title": "笔电",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/17"
+          },
+          {
+            "title": "影音",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/5"
+          },
+          {
+            "title": "汽车",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/401"
+          },
+          {
+            "title": "视频",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/395"
+          },
+          {
+            "title": "摄影",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/22"
+          },
+          {
+            "title": "露营",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/405"
+          },
+          {
+            "title": "家装",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/402"
+          },
+          {
+            "title": "活动",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/138"
+          },
+          {
+            "title": "生活",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/34"
+          },
+          {
+            "title": "旅行",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/137"
+          },
+          {
+            "title": "骑行",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/412"
+          },
+          {
+            "title": "游戏",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/411"
+          },
+          {
+            "title": "宠物",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/407"
+          },
+          {
+            "title": "时尚",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/406"
+          },
+          {
+            "title": "运动",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/403"
+          },
+          {
+            "title": "应用",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/135"
+          },
+          {
+            "title": "玩物",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/75"
+          },
+          {
+            "title": "周边",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/19"
+          },
+          {
+            "title": "文具",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/7"
+          },
+          {
+            "title": "官方",
+            "source": [
+              "www.dgtle.com/article"
+            ],
+            "target": "/article/400"
+          }
+        ],
+        "view": 0,
+        "location": "article.ts",
+        "module": "() => import('@/routes/dgtle/article.ts')"
+      },
+      "/news/:id?": {
+        "path": "/news/:id?",
+        "name": "鲸闻",
+        "url": "www.dgtle.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/dgtle/news/0",
+        "parameters": {
+          "id": {
+            "description": "分类，默认为 `0`，即最新，可在下表中找到",
+            "options": [
+              {
+                "label": "最新",
+                "value": "0"
+              },
+              {
+                "label": "直播",
+                "value": "395"
+              },
+              {
+                "label": "资讯",
+                "value": "396"
+              },
+              {
+                "label": "每日一言",
+                "value": "388"
+              }
+            ]
+          }
+        },
+        "description": ":::tip\n订阅 [最新](https://www.dgtle.com/news)，其对应分类 ID 为 `0`，此时路由为 [`/dgtle/news/0`](https://rsshub.app/dgtle/news/0)。\n:::\n\n| 最新 | 直播 | 资讯 | 每日一言 |\n| ---- | ---- | ---- | -------- |\n| 0    | 395  | 396  | 388      |\n",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.dgtle.com/news"
+            ],
+            "target": "/news"
+          },
+          {
+            "title": "最新",
+            "source": [
+              "www.dgtle.com/news"
+            ],
+            "target": "/news/0"
+          },
+          {
+            "title": "直播",
+            "source": [
+              "www.dgtle.com/news"
+            ],
+            "target": "/news/395"
+          },
+          {
+            "title": "资讯",
+            "source": [
+              "www.dgtle.com/news"
+            ],
+            "target": "/news/396"
+          },
+          {
+            "title": "每日一言",
+            "source": [
+              "www.dgtle.com/news"
+            ],
+            "target": "/news/388"
+          }
+        ],
+        "view": 0,
+        "location": "news.ts",
+        "module": "() => import('@/routes/dgtle/news.ts')"
+      }
+    },
+    "name": "数字尾巴",
+    "apiRoutes": {},
+    "url": "dgtle.com",
+    "categories": [
+      "new-media"
+    ],
+    "description": "",
     "lang": "zh-CN"
   },
   "dgut": {
@@ -36227,6 +37456,178 @@
   },
   "eastmoney": {
     "routes": {
+      "/gerenzhongxin/cfh/:uid": {
+        "path": "/gerenzhongxin/cfh/:uid",
+        "categories": [
+          "finance"
+        ],
+        "view": 0,
+        "example": "/eastmoney/gerenzhongxin/cfh/2922094262312522",
+        "parameters": {
+          "uid": "用户id,即用户主页网址末尾的数字"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "guba.eastmoney.com"
+            ]
+          },
+          {
+            "source": [
+              "caifuhao.eastmoney.com"
+            ]
+          },
+          {
+            "source": [
+              "i.eastmoney.com/:uid"
+            ],
+            "target": "/gerenzhongxin/cfh/:uid"
+          }
+        ],
+        "name": "个人中心长文",
+        "maintainers": [
+          "AwesomeDog"
+        ],
+        "location": "gerenzhongxin/cfh.ts",
+        "module": "() => import('@/routes/eastmoney/gerenzhongxin/cfh.ts')"
+      },
+      "/gerenzhongxin/gather/:uid": {
+        "path": "/gerenzhongxin/gather/:uid",
+        "categories": [
+          "finance"
+        ],
+        "view": 0,
+        "example": "/eastmoney/gerenzhongxin/gather/2922094262312522",
+        "parameters": {
+          "uid": "用户id,即用户主页网址末尾的数字"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "guba.eastmoney.com"
+            ]
+          },
+          {
+            "source": [
+              "caifuhao.eastmoney.com"
+            ]
+          },
+          {
+            "source": [
+              "i.eastmoney.com/:uid"
+            ],
+            "target": "/gerenzhongxin/gather/:uid"
+          }
+        ],
+        "name": "个人中心所有活动",
+        "maintainers": [
+          "AwesomeDog"
+        ],
+        "location": "gerenzhongxin/gather.ts",
+        "module": "() => import('@/routes/eastmoney/gerenzhongxin/gather.ts')"
+      },
+      "/gerenzhongxin/guba/:uid": {
+        "path": "/gerenzhongxin/guba/:uid",
+        "categories": [
+          "finance"
+        ],
+        "view": 0,
+        "example": "/eastmoney/gerenzhongxin/guba/2922094262312522",
+        "parameters": {
+          "uid": "用户id,即用户主页网址末尾的数字"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "guba.eastmoney.com"
+            ]
+          },
+          {
+            "source": [
+              "caifuhao.eastmoney.com"
+            ]
+          },
+          {
+            "source": [
+              "i.eastmoney.com/:uid"
+            ],
+            "target": "/gerenzhongxin/guba/:uid"
+          }
+        ],
+        "name": "个人中心帖子",
+        "maintainers": [
+          "AwesomeDog"
+        ],
+        "location": "gerenzhongxin/guba.ts",
+        "module": "() => import('@/routes/eastmoney/gerenzhongxin/guba.ts')"
+      },
+      "/gerenzhongxin/trpl/:uid": {
+        "path": "/gerenzhongxin/trpl/:uid",
+        "categories": [
+          "finance"
+        ],
+        "view": 0,
+        "example": "/eastmoney/gerenzhongxin/trpl/2922094262312522",
+        "parameters": {
+          "uid": "用户id,即用户主页网址末尾的数字"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "guba.eastmoney.com"
+            ]
+          },
+          {
+            "source": [
+              "caifuhao.eastmoney.com"
+            ]
+          },
+          {
+            "source": [
+              "i.eastmoney.com/:uid"
+            ],
+            "target": "/gerenzhongxin/trpl/:uid"
+          }
+        ],
+        "name": "个人中心评论",
+        "maintainers": [
+          "AwesomeDog"
+        ],
+        "location": "gerenzhongxin/trpl.ts",
+        "module": "() => import('@/routes/eastmoney/gerenzhongxin/trpl.ts')"
+      },
       "/report/:category": {
         "path": "/report/:category",
         "categories": [
@@ -41358,41 +42759,174 @@
   },
   "futunn": {
     "routes": {
-      "/highlights": {
-        "path": [
-          "/highlights",
-          "/main",
-          "/"
+      "/live/:lang?": {
+        "path": "/live/:lang?",
+        "categories": [
+          "finance"
         ],
-        "name": "Unknown",
-        "maintainers": [],
-        "url": "news.futunn.com/main",
-        "location": "main.ts",
-        "module": "() => import('@/routes/futunn/main.ts')"
+        "example": "/futunn/live",
+        "parameters": {
+          "category": {
+            "description": "通知语言",
+            "default": "Mandarin",
+            "options": [
+              {
+                "label": "国语",
+                "value": "Mandarin"
+              },
+              {
+                "label": "粵語",
+                "value": "Cantonese"
+              },
+              {
+                "label": "English",
+                "value": "English"
+              }
+            ]
+          }
+        },
+        "features": {
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "news.futunn.com/main/live"
+            ],
+            "target": "/live"
+          },
+          {
+            "source": [
+              "news.futunn.com/hk/main/live"
+            ],
+            "target": "/live/Cantonese"
+          },
+          {
+            "source": [
+              "news.futunn.com/en/main/live"
+            ],
+            "target": "/live/English"
+          }
+        ],
+        "name": "快讯",
+        "maintainers": [
+          "kennyfong19931"
+        ],
+        "location": "live.ts",
+        "module": "() => import('@/routes/futunn/live.ts')"
       },
       "/main": {
         "path": [
-          "/highlights",
           "/main",
           "/"
         ],
-        "name": "Unknown",
-        "maintainers": [],
-        "url": "news.futunn.com/main",
+        "categories": [
+          "finance"
+        ],
+        "example": "/futunn/main",
+        "features": {
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "news.futunn.com/main",
+              "news.futunn.com/:lang/main"
+            ],
+            "target": "/main"
+          }
+        ],
+        "name": "要闻",
+        "maintainers": [
+          "Wsine",
+          "nczitzk",
+          "kennyfong19931"
+        ],
         "location": "main.ts",
         "module": "() => import('@/routes/futunn/main.ts')"
       },
       "/": {
         "path": [
-          "/highlights",
           "/main",
           "/"
         ],
-        "name": "Unknown",
-        "maintainers": [],
-        "url": "news.futunn.com/main",
+        "categories": [
+          "finance"
+        ],
+        "example": "/futunn/main",
+        "features": {
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "news.futunn.com/main",
+              "news.futunn.com/:lang/main"
+            ],
+            "target": "/main"
+          }
+        ],
+        "name": "要闻",
+        "maintainers": [
+          "Wsine",
+          "nczitzk",
+          "kennyfong19931"
+        ],
         "location": "main.ts",
         "module": "() => import('@/routes/futunn/main.ts')"
+      },
+      "/topic/:id": {
+        "path": "/topic/:id",
+        "categories": [
+          "finance"
+        ],
+        "example": "/futunn/topic/1267",
+        "parameters": {
+          "id": "Topic ID, can be found in URL"
+        },
+        "features": {
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "news.futunn.com/news-topics/:id/*",
+              "news.futunn.com/:lang/news-topics/:id/*"
+            ],
+            "target": "/topic/:id"
+          }
+        ],
+        "name": "专题",
+        "maintainers": [
+          "kennyfong19931"
+        ],
+        "location": "topic.ts",
+        "module": "() => import('@/routes/futunn/topic.ts')"
+      },
+      "/video": {
+        "path": "/video",
+        "categories": [
+          "finance"
+        ],
+        "example": "/futunn/video",
+        "features": {
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "news.futunn.com/main/video-list",
+              "news.futunn.com/:lang/main/video-list"
+            ],
+            "target": "/video"
+          }
+        ],
+        "name": "视频",
+        "maintainers": [
+          "kennyfong19931"
+        ],
+        "location": "video.ts",
+        "module": "() => import('@/routes/futunn/video.ts')"
       }
     },
     "name": "Futubull 富途牛牛",
@@ -44222,12 +45756,126 @@
         "location": "notifications.ts",
         "module": "() => import('@/routes/github/notifications.ts')"
       },
+      "/org_event/:org/:types?": {
+        "path": "/org_event/:org/:types?",
+        "categories": [
+          "programming"
+        ],
+        "example": "/github/org_event/RSSNext",
+        "view": 5,
+        "parameters": {
+          "org": "Organization name",
+          "types": {
+            "description": "Event types to include, comma separated",
+            "default": "all",
+            "options": [
+              {
+                "label": "All events",
+                "value": "all"
+              },
+              {
+                "label": "Create events",
+                "value": "create"
+              },
+              {
+                "label": "Delete events",
+                "value": "delete"
+              },
+              {
+                "label": "Fork events",
+                "value": "fork"
+              },
+              {
+                "label": "Issue create events",
+                "value": "issue"
+              },
+              {
+                "label": "Issue comment events",
+                "value": "issuecomm"
+              },
+              {
+                "label": "Member events",
+                "value": "member"
+              },
+              {
+                "label": "Pull request events",
+                "value": "pr"
+              },
+              {
+                "label": "Pull request review comment events",
+                "value": "prcomm"
+              },
+              {
+                "label": "Pull request review events",
+                "value": "prrev"
+              },
+              {
+                "label": "Public events",
+                "value": "public"
+              },
+              {
+                "label": "Push events",
+                "value": "push"
+              },
+              {
+                "label": "Release events",
+                "value": "release"
+              },
+              {
+                "label": "Watch events (stars)",
+                "value": "star"
+              },
+              {
+                "label": "Wiki item create or update events",
+                "value": "wiki"
+              },
+              {
+                "label": "Commit comment events",
+                "value": "cmcomm"
+              },
+              {
+                "label": "Discussion events",
+                "value": "discussion"
+              }
+            ]
+          }
+        },
+        "features": {
+          "requireConfig": [
+            {
+              "name": "GITHUB_ACCESS_TOKEN",
+              "optional": true,
+              "description": "GitHub access token to avoid access limit"
+            }
+          ],
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "github.com/orgs/:org"
+            ],
+            "target": "/org_event/:org"
+          }
+        ],
+        "name": "Organization Event",
+        "maintainers": [
+          "mslxl"
+        ],
+        "location": "org-event.ts",
+        "module": "() => import('@/routes/github/org-event.ts')"
+      },
       "/feed/:user/:types?": {
         "path": "/feed/:user/:types?",
         "categories": [
           "programming"
         ],
         "example": "/github/feed/yihong0618/star,release,pr",
+        "view": 5,
         "parameters": {
           "user": "GitHub username",
           "types": {
@@ -44385,6 +46033,120 @@
         ],
         "location": "pulse.ts",
         "module": "() => import('@/routes/github/pulse.ts')"
+      },
+      "/repo_event/:owner/:repo/:types?": {
+        "path": "/repo_event/:owner/:repo/:types?",
+        "categories": [
+          "programming"
+        ],
+        "example": "/github/repo_event/DIYgod/RSSHub",
+        "view": 5,
+        "parameters": {
+          "owner": "Username or organization name",
+          "repo": "Repository name",
+          "types": {
+            "description": "Event types to include, comma separated",
+            "default": "all",
+            "options": [
+              {
+                "label": "All events",
+                "value": "all"
+              },
+              {
+                "label": "Create events",
+                "value": "create"
+              },
+              {
+                "label": "Delete events",
+                "value": "delete"
+              },
+              {
+                "label": "Fork events",
+                "value": "fork"
+              },
+              {
+                "label": "Issue create events",
+                "value": "issue"
+              },
+              {
+                "label": "Issue comment events",
+                "value": "issuecomm"
+              },
+              {
+                "label": "Member events",
+                "value": "member"
+              },
+              {
+                "label": "Pull request events",
+                "value": "pr"
+              },
+              {
+                "label": "Pull request review comment events",
+                "value": "prcomm"
+              },
+              {
+                "label": "Pull request review events",
+                "value": "prrev"
+              },
+              {
+                "label": "Public events",
+                "value": "public"
+              },
+              {
+                "label": "Push events",
+                "value": "push"
+              },
+              {
+                "label": "Release events",
+                "value": "release"
+              },
+              {
+                "label": "Watch events (stars)",
+                "value": "star"
+              },
+              {
+                "label": "Wiki item create or update events",
+                "value": "wiki"
+              },
+              {
+                "label": "Commit comment events",
+                "value": "cmcomm"
+              },
+              {
+                "label": "Discussion events",
+                "value": "discussion"
+              }
+            ]
+          }
+        },
+        "features": {
+          "requireConfig": [
+            {
+              "name": "GITHUB_ACCESS_TOKEN",
+              "optional": true,
+              "description": "GitHub access token to access private repository events"
+            }
+          ],
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "github.com/:owner/:repo"
+            ],
+            "target": "/repo_event/:owner/:repo"
+          }
+        ],
+        "name": "Repository Event",
+        "maintainers": [
+          "mslxl"
+        ],
+        "location": "repo-event.ts",
+        "module": "() => import('@/routes/github/repo-event.ts')"
       },
       "/repos/:user/:type?/:sort?": {
         "path": "/repos/:user/:type?/:sort?",
@@ -44609,6 +46371,119 @@
         "url": "github.com/trending",
         "location": "trending.ts",
         "module": "() => import('@/routes/github/trending.ts')"
+      },
+      "/user_event/:username/:types?": {
+        "path": "/user_event/:username/:types?",
+        "categories": [
+          "programming"
+        ],
+        "example": "/github/user_event/mslxl",
+        "view": 5,
+        "parameters": {
+          "username": "Username",
+          "types": {
+            "description": "Event types to include, comma separated",
+            "default": "all",
+            "options": [
+              {
+                "label": "All events",
+                "value": "all"
+              },
+              {
+                "label": "Create events",
+                "value": "create"
+              },
+              {
+                "label": "Delete events",
+                "value": "delete"
+              },
+              {
+                "label": "Fork events",
+                "value": "fork"
+              },
+              {
+                "label": "Issue create events",
+                "value": "issue"
+              },
+              {
+                "label": "Issue comment events",
+                "value": "issuecomm"
+              },
+              {
+                "label": "Member events",
+                "value": "member"
+              },
+              {
+                "label": "Pull request events",
+                "value": "pr"
+              },
+              {
+                "label": "Pull request review comment events",
+                "value": "prcomm"
+              },
+              {
+                "label": "Pull request review events",
+                "value": "prrev"
+              },
+              {
+                "label": "Public events",
+                "value": "public"
+              },
+              {
+                "label": "Push events",
+                "value": "push"
+              },
+              {
+                "label": "Release events",
+                "value": "release"
+              },
+              {
+                "label": "Watch events (stars)",
+                "value": "star"
+              },
+              {
+                "label": "Wiki item create or update events",
+                "value": "wiki"
+              },
+              {
+                "label": "Commit comment events",
+                "value": "cmcomm"
+              },
+              {
+                "label": "Discussion events",
+                "value": "discussion"
+              }
+            ]
+          }
+        },
+        "features": {
+          "requireConfig": [
+            {
+              "name": "GITHUB_ACCESS_TOKEN",
+              "optional": true,
+              "description": "GitHub access token to access private repository events"
+            }
+          ],
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "github.com/:username"
+            ],
+            "target": "/user_event/:username"
+          }
+        ],
+        "name": "User Event",
+        "maintainers": [
+          "mslxl"
+        ],
+        "location": "user-event.ts",
+        "module": "() => import('@/routes/github/user-event.ts')"
       },
       "/wiki/:user/:repo/:page?": {
         "path": "/wiki/:user/:repo/:page?",
@@ -47558,6 +49433,255 @@
         "description": "| 政务公开 | 政务新闻 | 茂南动态 | 重大会议 | 公告公示 | 招录信息 | 政策解读 |\n| :------: | :------: | :------: | :------: | :------: | :------: | :------: |\n|   zwgk   |   zwxw   |   mndt   |   zdhy   |   tzgg   |   zlxx   |   zcjd   |",
         "location": "maonan/maonan.ts",
         "module": "() => import('@/routes/gov/maonan/maonan.ts')"
+      },
+      "/mee/nnsa/:category{.+}?": {
+        "path": "/mee/nnsa/:category{.+}?",
+        "name": "国家核安全局",
+        "url": "nnsa.mee.gov.cn",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/gov/mee/nnsa/ywdt/hjyw",
+        "parameters": {
+          "category": {
+            "description": "分类，默认为 `ywdt/hjyw`，即环境要闻，可在对应分类页 URL 中找到",
+            "options": [
+              {
+                "label": "要闻动态 - 时政要闻",
+                "value": "ywdt/szyw"
+              },
+              {
+                "label": "要闻动态 - 环境要闻",
+                "value": "ywdt/hjyw"
+              },
+              {
+                "label": "要闻动态 - 监管动态",
+                "value": "ywdt/gzdt"
+              },
+              {
+                "label": "要闻动态 - 行业资讯",
+                "value": "ywdt/hyzx"
+              },
+              {
+                "label": "要闻动态 - 国际资讯",
+                "value": "ywdt/gjzx"
+              },
+              {
+                "label": "要闻动态 - 公示公告",
+                "value": "ywdt/gsqg"
+              },
+              {
+                "label": "要闻动态 - 曝光台",
+                "value": "ywdt/bgt"
+              },
+              {
+                "label": "政策文件 - 中央有关文件",
+                "value": "zcwj/zyygwj"
+              },
+              {
+                "label": "政策文件 - 国务院有关文件",
+                "value": "zcwj/gwyygwj"
+              },
+              {
+                "label": "政策文件 - 部文件",
+                "value": "zcwj/bwj"
+              },
+              {
+                "label": "政策文件 - 核安全局文件",
+                "value": "zcwj/haqjwj"
+              },
+              {
+                "label": "政策文件 - 其他",
+                "value": "zcwj/qt"
+              },
+              {
+                "label": "政策文件 - 解读",
+                "value": "zcwj/jd"
+              },
+              {
+                "label": "业务工作 - 核动力厂和研究堆",
+                "value": "ywdh/fyd"
+              },
+              {
+                "label": "业务工作 - 核燃料、放废",
+                "value": "ywdh/hrlff"
+              },
+              {
+                "label": "业务工作 - 核技术、电磁、矿冶",
+                "value": "ywdh/hjsdcky"
+              },
+              {
+                "label": "业务工作 - 监测与应急",
+                "value": "ywdh/jcyj_1"
+              },
+              {
+                "label": "业务工作 - 核安全设备与人员",
+                "value": "ywdh/haqsbry"
+              },
+              {
+                "label": "业务工作 - 国际合作",
+                "value": "ywdh/gjhz"
+              }
+            ]
+          }
+        },
+        "description": ":::tip\n订阅 [环境要闻](https://nnsa.mee.gov.cn/ywdt/hjyw/)，其源网址为 `https://nnsa.mee.gov.cn/ywdt/hjyw/`，请参考该 URL 指定部分构成参数，此时路由为 [`/gov/mee/nnsa/ywdt/hjyw`](https://rsshub.app/gov/mee/nnsa/ywdt/hjyw)。\n:::\n\n<details>\n  <summary>更多分类</summary>\n\n  #### [要闻动态](https://nnsa.mee.gov.cn/ywdt/)\n\n  | 分类                                           | ID                                                     |\n  | ---------------------------------------------- | ------------------------------------------------------ |\n  | [时政要闻](https://nnsa.mee.gov.cn/ywdt/szyw/) | [ywdt/szyw](https://rsshub.app/gov/mee/nnsa/ywdt/szyw) |\n  | [环境要闻](https://nnsa.mee.gov.cn/ywdt/hjyw/) | [ywdt/hjyw](https://rsshub.app/gov/mee/nnsa/ywdt/hjyw) |\n  | [监管动态](https://nnsa.mee.gov.cn/ywdt/gzdt/) | [ywdt/gzdt](https://rsshub.app/gov/mee/nnsa/ywdt/gzdt) |\n  | [行业资讯](https://nnsa.mee.gov.cn/ywdt/hyzx/) | [ywdt/hyzx](https://rsshub.app/gov/mee/nnsa/ywdt/hyzx) |\n  | [国际资讯](https://nnsa.mee.gov.cn/ywdt/gjzx/) | [ywdt/gjzx](https://rsshub.app/gov/mee/nnsa/ywdt/gjzx) |\n  | [公示公告](https://nnsa.mee.gov.cn/ywdt/gsqg/) | [ywdt/gsqg](https://rsshub.app/gov/mee/nnsa/ywdt/gsqg) |\n  | [曝光台](https://nnsa.mee.gov.cn/ywdt/bgt/)    | [ywdt/bgt](https://rsshub.app/gov/mee/nnsa/ywdt/bgt)   |\n\n  #### [政策文件](https://nnsa.mee.gov.cn/zcwj/)\n\n  | 分类                                                    | ID                                                           |\n  | ------------------------------------------------------- | ------------------------------------------------------------ |\n  | [中央有关文件](https://nnsa.mee.gov.cn/zcwj/zyygwj/)    | [zcwj/zyygwj](https://rsshub.app/gov/mee/nnsa/zcwj/zyygwj)   |\n  | [国务院有关文件](https://nnsa.mee.gov.cn/zcwj/gwyygwj/) | [zcwj/gwyygwj](https://rsshub.app/gov/mee/nnsa/zcwj/gwyygwj) |\n  | [部文件](https://nnsa.mee.gov.cn/zcwj/bwj/)             | [zcwj/bwj](https://rsshub.app/gov/mee/nnsa/zcwj/bwj)         |\n  | [核安全局文件](https://nnsa.mee.gov.cn/zcwj/haqjwj/)    | [zcwj/haqjwj](https://rsshub.app/gov/mee/nnsa/zcwj/haqjwj)   |\n  | [其他](https://nnsa.mee.gov.cn/zcwj/qt/)                | [zcwj/qt](https://rsshub.app/gov/mee/nnsa/zcwj/qt)           |\n  | [解读](https://nnsa.mee.gov.cn/zcwj/jd/)                | [zcwj/jd](https://rsshub.app/gov/mee/nnsa/zcwj/jd)           |\n\n  #### [业务工作](https://nnsa.mee.gov.cn/ywdh/)\n\n  | 分类                                                        | ID                                                           |\n  | ----------------------------------------------------------- | ------------------------------------------------------------ |\n  | [核动力厂和研究堆](https://nnsa.mee.gov.cn/ywdh/fyd/)       | [ywdh/fyd](https://rsshub.app/gov/mee/nnsa/ywdh/fyd)         |\n  | [核燃料、放废](https://nnsa.mee.gov.cn/ywdh/hrlff/)         | [ywdh/hrlff](https://rsshub.app/gov/mee/nnsa/ywdh/hrlff)     |\n  | [核技术、电磁、矿冶](https://nnsa.mee.gov.cn/ywdh/hjsdcky/) | [ywdh/hjsdcky](https://rsshub.app/gov/mee/nnsa/ywdh/hjsdcky) |\n  | [监测与应急](https://nnsa.mee.gov.cn/ywdh/jcyj_1/)          | [ywdh/jcyj_1](https://rsshub.app/gov/mee/nnsa/ywdh/jcyj_1)   |\n  | [核安全设备与人员](https://nnsa.mee.gov.cn/ywdh/haqsbry/)   | [ywdh/haqsbry](https://rsshub.app/gov/mee/nnsa/ywdh/haqsbry) |\n  | [国际合作](https://nnsa.mee.gov.cn/ywdh/gjhz/)              | [ywdh/gjhz](https://rsshub.app/gov/mee/nnsa/ywdh/gjhz)       |\n\n</details>\n",
+        "categories": [
+          "government"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "nnsa.mee.gov.cn/:category"
+            ],
+            "target": "/mee/nnsa/:category"
+          },
+          {
+            "title": "要闻动态 - 时政要闻",
+            "source": [
+              "nnsa.mee.gov.cn/ywdt/szyw/"
+            ],
+            "target": "/mee/nnsa/ywdt/szyw"
+          },
+          {
+            "title": "要闻动态 - 环境要闻",
+            "source": [
+              "nnsa.mee.gov.cn/ywdt/hjyw/"
+            ],
+            "target": "/mee/nnsa/ywdt/hjyw"
+          },
+          {
+            "title": "要闻动态 - 监管动态",
+            "source": [
+              "nnsa.mee.gov.cn/ywdt/gzdt/"
+            ],
+            "target": "/mee/nnsa/ywdt/gzdt"
+          },
+          {
+            "title": "要闻动态 - 行业资讯",
+            "source": [
+              "nnsa.mee.gov.cn/ywdt/hyzx/"
+            ],
+            "target": "/mee/nnsa/ywdt/hyzx"
+          },
+          {
+            "title": "要闻动态 - 国际资讯",
+            "source": [
+              "nnsa.mee.gov.cn/ywdt/gjzx/"
+            ],
+            "target": "/mee/nnsa/ywdt/gjzx"
+          },
+          {
+            "title": "要闻动态 - 公示公告",
+            "source": [
+              "nnsa.mee.gov.cn/ywdt/gsqg/"
+            ],
+            "target": "/mee/nnsa/ywdt/gsqg"
+          },
+          {
+            "title": "要闻动态 - 曝光台",
+            "source": [
+              "nnsa.mee.gov.cn/ywdt/bgt/"
+            ],
+            "target": "/mee/nnsa/ywdt/bgt"
+          },
+          {
+            "title": "政策文件 - 中央有关文件",
+            "source": [
+              "nnsa.mee.gov.cn/zcwj/zyygwj/"
+            ],
+            "target": "/mee/nnsa/zcwj/zyygwj"
+          },
+          {
+            "title": "政策文件 - 国务院有关文件",
+            "source": [
+              "nnsa.mee.gov.cn/zcwj/gwyygwj/"
+            ],
+            "target": "/mee/nnsa/zcwj/gwyygwj"
+          },
+          {
+            "title": "政策文件 - 部文件",
+            "source": [
+              "nnsa.mee.gov.cn/zcwj/bwj/"
+            ],
+            "target": "/mee/nnsa/zcwj/bwj"
+          },
+          {
+            "title": "政策文件 - 核安全局文件",
+            "source": [
+              "nnsa.mee.gov.cn/zcwj/haqjwj/"
+            ],
+            "target": "/mee/nnsa/zcwj/haqjwj"
+          },
+          {
+            "title": "政策文件 - 其他",
+            "source": [
+              "nnsa.mee.gov.cn/zcwj/qt/"
+            ],
+            "target": "/mee/nnsa/zcwj/qt"
+          },
+          {
+            "title": "政策文件 - 解读",
+            "source": [
+              "nnsa.mee.gov.cn/zcwj/jd/"
+            ],
+            "target": "/mee/nnsa/zcwj/jd"
+          },
+          {
+            "title": "业务工作 - 核动力厂和研究堆",
+            "source": [
+              "nnsa.mee.gov.cn/ywdh/fyd/"
+            ],
+            "target": "/mee/nnsa/ywdh/fyd"
+          },
+          {
+            "title": "业务工作 - 核燃料、放废",
+            "source": [
+              "nnsa.mee.gov.cn/ywdh/hrlff/"
+            ],
+            "target": "/mee/nnsa/ywdh/hrlff"
+          },
+          {
+            "title": "业务工作 - 核技术、电磁、矿冶",
+            "source": [
+              "nnsa.mee.gov.cn/ywdh/hjsdcky/"
+            ],
+            "target": "/mee/nnsa/ywdh/hjsdcky"
+          },
+          {
+            "title": "业务工作 - 监测与应急",
+            "source": [
+              "nnsa.mee.gov.cn/ywdh/jcyj_1/"
+            ],
+            "target": "/mee/nnsa/ywdh/jcyj_1"
+          },
+          {
+            "title": "业务工作 - 核安全设备与人员",
+            "source": [
+              "nnsa.mee.gov.cn/ywdh/haqsbry/"
+            ],
+            "target": "/mee/nnsa/ywdh/haqsbry"
+          },
+          {
+            "title": "业务工作 - 国际合作",
+            "source": [
+              "nnsa.mee.gov.cn/ywdh/gjhz/"
+            ],
+            "target": "/mee/nnsa/ywdh/gjhz"
+          }
+        ],
+        "view": 0,
+        "location": "mee/nnsa.ts",
+        "module": "() => import('@/routes/gov/mee/nnsa.ts')"
       },
       "/mee/ywdt/:category?": {
         "path": "/mee/ywdt/:category?",
@@ -57355,7 +59479,7 @@
           "supportPodcast": false,
           "supportScihub": false
         },
-        "name": "期刊",
+        "name": "回归线",
         "url": "aneot.arktca.com",
         "maintainers": [
           "Bendancom"
@@ -57367,7 +59491,7 @@
             ]
           }
         ],
-        "description": "期刊《回归线》 | 泰拉创作者联合会",
+        "description": "明日方舟期刊《回归线》 | 泰拉创作者联合会",
         "location": "arknights/arktca.ts",
         "module": "() => import('@/routes/hypergryph/arknights/arktca.ts')"
       },
@@ -60070,20 +62194,167 @@
   },
   "iresearch": {
     "routes": {
-      "/chart/:category?": {
-        "path": "/chart/:category?",
-        "name": "研究图表",
+      "/report/:type?/:id?": {
+        "path": "/report/:type?/:id?",
+        "name": "研究报告",
         "url": "www.iresearch.com.cn",
         "maintainers": [
+          "brilon",
+          "Fatpandac",
           "nczitzk"
         ],
-        "example": "/iresearch/chart",
+        "example": "/iresearch/report",
         "parameters": {
-          "category": "分类，见下表"
+          "type": {
+            "description": "分类，默认为 `1`，即最新报告，可在对应分类页 URL 中找到",
+            "options": [
+              {
+                "label": "最新报告",
+                "value": "1"
+              },
+              {
+                "label": "热门报告",
+                "value": "2"
+              },
+              {
+                "label": "周度市场观察",
+                "value": "3"
+              },
+              {
+                "label": "研究图表",
+                "value": "4"
+              }
+            ]
+          },
+          "id": {
+            "description": "行业 ID，默认为全部，即全部行业，可在对应行业页 URL 中找到",
+            "options": [
+              {
+                "label": "全部",
+                "value": ""
+              },
+              {
+                "label": "家电行业",
+                "value": "1"
+              },
+              {
+                "label": "服装行业",
+                "value": "2"
+              },
+              {
+                "label": "美妆行业",
+                "value": "3"
+              },
+              {
+                "label": "食品饮料行业",
+                "value": "4"
+              },
+              {
+                "label": "酒行业",
+                "value": "5"
+              },
+              {
+                "label": "媒体文娱",
+                "value": "59"
+              },
+              {
+                "label": "广告营销",
+                "value": "89"
+              },
+              {
+                "label": "游戏行业",
+                "value": "90"
+              },
+              {
+                "label": "视频媒体",
+                "value": "91"
+              },
+              {
+                "label": "消费电商",
+                "value": "69"
+              },
+              {
+                "label": "电子商务",
+                "value": "86"
+              },
+              {
+                "label": "消费者洞察",
+                "value": "87"
+              },
+              {
+                "label": "旅游行业",
+                "value": "88"
+              },
+              {
+                "label": "汽车行业",
+                "value": "80"
+              },
+              {
+                "label": "教育行业",
+                "value": "63"
+              },
+              {
+                "label": "企业服务",
+                "value": "60"
+              },
+              {
+                "label": "网络服务",
+                "value": "84"
+              },
+              {
+                "label": "应用服务",
+                "value": "85"
+              },
+              {
+                "label": "AI大数据",
+                "value": "65"
+              },
+              {
+                "label": "人工智能",
+                "value": "83"
+              },
+              {
+                "label": "物流行业",
+                "value": "75"
+              },
+              {
+                "label": "金融行业",
+                "value": "70"
+              },
+              {
+                "label": "支付行业",
+                "value": "82"
+              },
+              {
+                "label": "房产行业",
+                "value": "68"
+              },
+              {
+                "label": "医疗健康",
+                "value": "62"
+              },
+              {
+                "label": "先进制造",
+                "value": "61"
+              },
+              {
+                "label": "能源环保",
+                "value": "77"
+              },
+              {
+                "label": "区块链",
+                "value": "76"
+              },
+              {
+                "label": "其他",
+                "value": "81"
+              }
+            ]
+          }
         },
-        "description": "\n| 媒体文娱 | 广告营销   | 游戏行业 | 视频媒体  | 消费电商 |\n| -------- | ---------- | -------- | --------- | -------- |\n| 电子商务 | 消费者洞察 | 旅游行业 | 汽车行业  | 教育行业 |\n| 企业服务 | 网络服务   | 应用服务 | AI 大数据 | 人工智能 |\n| 物流行业 | 金融行业   | 支付行业 | 房产行业  | 医疗健康 |\n| 先进制造 | 新能源     | 区块链   | 其他      |          |\n",
+        "description": ":::tip\n订阅 [电子商务最新报告](https://www.iresearch.com.cn/report.shtml?type=1&classId=86)，其源网址为 `https://www.iresearch.com.cn/report.shtml?type=1&classId=86`，请参考该 URL 指定部分构成参数，此时路由为 [`/iresearch/report/最新报告/电子商务`](https://rsshub.app/iresearch/report/最新报告/电子商务) 或 [`/iresearch/report/1/86`](https://rsshub.app/iresearch/report/1/86)。\n:::\n\n#### 分类\n\n| [最新报告](https://www.iresearch.com.cn/report.shtml?type=1) | [研究图表](https://www.iresearch.com.cn/report.shtml?type=4) | [周度市场观察](https://www.iresearch.com.cn/report.shtml?type=3) | [热门报告](https://www.iresearch.com.cn/report.shtml?type=2) |\n| ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------------------------------- | ------------------------------------------------------------ |\n| [1](https://rsshub.app/iresearch/report/1)                   | [4](https://rsshub.app/iresearch/report/4)                   | [3](https://rsshub.app/iresearch/report/3)                       | [2](https://rsshub.app/iresearch/report/2)                   |\n\n<details>\n  <summary>更多行业</summary>\n\n| 名称                                                                       | ID                                             |\n| -------------------------------------------------------------------------- | ---------------------------------------------- |\n| [家电行业](https://www.iresearch.com.cn/report.shtml?type=3&classId=1)     | [1](https://rsshub.app/iresearch/report/3/1)   |\n| [服装行业](https://www.iresearch.com.cn/report.shtml?type=3&classId=2)     | [2](https://rsshub.app/iresearch/report/3/2)   |\n| [美妆行业](https://www.iresearch.com.cn/report.shtml?type=3&classId=3)     | [3](https://rsshub.app/iresearch/report/3/3)   |\n| [食品饮料行业](https://www.iresearch.com.cn/report.shtml?type=3&classId=4) | [4](https://rsshub.app/iresearch/report/3/4)   |\n| [酒行业](https://www.iresearch.com.cn/report.shtml?type=3&classId=5)       | [5](https://rsshub.app/iresearch/report/3/5)   |\n| [媒体文娱](https://www.iresearch.com.cn/report.shtml?classId=59)           | [59](https://rsshub.app/iresearch/report/1/59) |\n| [广告营销](https://www.iresearch.com.cn/report.shtml?classId=89)           | [89](https://rsshub.app/iresearch/report/1/89) |\n| [游戏行业](https://www.iresearch.com.cn/report.shtml?classId=90)           | [90](https://rsshub.app/iresearch/report/1/90) |\n| [视频媒体](https://www.iresearch.com.cn/report.shtml?classId=91)           | [91](https://rsshub.app/iresearch/report/1/91) |\n| [消费电商](https://www.iresearch.com.cn/report.shtml?classId=69)           | [69](https://rsshub.app/iresearch/report/1/69) |\n| [电子商务](https://www.iresearch.com.cn/report.shtml?classId=86)           | [86](https://rsshub.app/iresearch/report/1/86) |\n| [消费者洞察](https://www.iresearch.com.cn/report.shtml?classId=87)         | [87](https://rsshub.app/iresearch/report/1/87) |\n| [旅游行业](https://www.iresearch.com.cn/report.shtml?classId=88)           | [88](https://rsshub.app/iresearch/report/1/88) |\n| [汽车行业](https://www.iresearch.com.cn/report.shtml?classId=80)           | [80](https://rsshub.app/iresearch/report/1/80) |\n| [教育行业](https://www.iresearch.com.cn/report.shtml?classId=63)           | [63](https://rsshub.app/iresearch/report/1/63) |\n| [企业服务](https://www.iresearch.com.cn/report.shtml?classId=60)           | [60](https://rsshub.app/iresearch/report/1/60) |\n| [网络服务](https://www.iresearch.com.cn/report.shtml?classId=84)           | [84](https://rsshub.app/iresearch/report/1/84) |\n| [应用服务](https://www.iresearch.com.cn/report.shtml?classId=85)           | [85](https://rsshub.app/iresearch/report/1/85) |\n| [AI 大数据](https://www.iresearch.com.cn/report.shtml?classId=65)          | [65](https://rsshub.app/iresearch/report/1/65) |\n| [人工智能](https://www.iresearch.com.cn/report.shtml?classId=83)           | [83](https://rsshub.app/iresearch/report/1/83) |\n| [物流行业](https://www.iresearch.com.cn/report.shtml?classId=75)           | [75](https://rsshub.app/iresearch/report/1/75) |\n| [金融行业](https://www.iresearch.com.cn/report.shtml?classId=70)           | [70](https://rsshub.app/iresearch/report/1/70) |\n| [支付行业](https://www.iresearch.com.cn/report.shtml?classId=82)           | [82](https://rsshub.app/iresearch/report/1/82) |\n| [房产行业](https://www.iresearch.com.cn/report.shtml?classId=68)           | [68](https://rsshub.app/iresearch/report/1/68) |\n| [医疗健康](https://www.iresearch.com.cn/report.shtml?classId=62)           | [62](https://rsshub.app/iresearch/report/1/62) |\n| [先进制造](https://www.iresearch.com.cn/report.shtml?classId=61)           | [61](https://rsshub.app/iresearch/report/1/61) |\n| [能源环保](https://www.iresearch.com.cn/report.shtml?classId=77)           | [77](https://rsshub.app/iresearch/report/1/77) |\n| [区块链](https://www.iresearch.com.cn/report.shtml?classId=76)             | [76](https://rsshub.app/iresearch/report/1/76) |\n| [其他](https://www.iresearch.com.cn/report.shtml?classId=81)               | [81](https://rsshub.app/iresearch/report/1/81) |\n\n</details>\n",
         "categories": [
-          "new-media"
+          "other"
         ],
         "features": {
           "requireConfig": false,
@@ -60096,165 +62367,290 @@
         },
         "radar": [
           {
-            "title": "研究图表 - 媒体文娱",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
+              "www.iresearch.com.cn/report.shtml"
             ]
           },
           {
-            "title": "研究图表 - 广告营销",
+            "title": "最新报告",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
+              "www.iresearch.com.cn/report.shtml"
             ]
           },
           {
-            "title": "研究图表 - 游戏行业",
+            "title": "研究图表",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
+              "www.iresearch.com.cn/report.shtml"
             ]
           },
           {
-            "title": "研究图表 - 视频媒体",
+            "title": "周度市场观察",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
+              "www.iresearch.com.cn/report.shtml"
             ]
           },
           {
-            "title": "研究图表 - 消费电商",
+            "title": "热门报告",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
+              "www.iresearch.com.cn/report.shtml"
             ]
           },
           {
-            "title": "研究图表 - 电子商务",
+            "title": "周度市场观察 - 家电行业",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/3/1"
           },
           {
-            "title": "研究图表 - 消费者洞察",
+            "title": "周度市场观察 - 服装行业",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/3/2"
           },
           {
-            "title": "研究图表 - 旅游行业",
+            "title": "周度市场观察 - 美妆行业",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/3/3"
           },
           {
-            "title": "研究图表 - 汽车行业",
+            "title": "周度市场观察 - 食品饮料行业",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/3/4"
           },
           {
-            "title": "研究图表 - 教育行业",
+            "title": "周度市场观察 - 酒行业",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/3/5"
           },
           {
-            "title": "研究图表 - 企业服务",
+            "title": "最新报告 - 媒体文娱",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/59"
           },
           {
-            "title": "研究图表 - 网络服务",
+            "title": "最新报告 - 广告营销",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/89"
           },
           {
-            "title": "研究图表 - 应用服务",
+            "title": "最新报告 - 游戏行业",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/90"
           },
           {
-            "title": "研究图表 - AI大数据",
+            "title": "最新报告 - 视频媒体",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/91"
           },
           {
-            "title": "研究图表 - 人工智能",
+            "title": "最新报告 - 消费电商",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/69"
           },
           {
-            "title": "研究图表 - 物流行业",
+            "title": "最新报告 - 电子商务",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/86"
           },
           {
-            "title": "研究图表 - 金融行业",
+            "title": "最新报告 - 消费者洞察",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/87"
           },
           {
-            "title": "研究图表 - 支付行业",
+            "title": "最新报告 - 旅游行业",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/88"
           },
           {
-            "title": "研究图表 - 房产行业",
+            "title": "最新报告 - 汽车行业",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/80"
           },
           {
-            "title": "研究图表 - 医疗健康",
+            "title": "最新报告 - 教育行业",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/63"
           },
           {
-            "title": "研究图表 - 先进制造",
+            "title": "最新报告 - 企业服务",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/60"
           },
           {
-            "title": "研究图表 - 新能源",
+            "title": "最新报告 - 网络服务",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/84"
           },
           {
-            "title": "研究图表 - 区块链",
+            "title": "最新报告 - 应用服务",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/85"
           },
           {
-            "title": "研究图表 - 其他",
+            "title": "最新报告 - AI 大数据",
             "source": [
-              "https://www.iresearch.com.cn/report.shtml"
-            ]
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/65"
+          },
+          {
+            "title": "最新报告 - 人工智能",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/83"
+          },
+          {
+            "title": "最新报告 - 物流行业",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/75"
+          },
+          {
+            "title": "最新报告 - 金融行业",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/70"
+          },
+          {
+            "title": "最新报告 - 支付行业",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/82"
+          },
+          {
+            "title": "最新报告 - 房产行业",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/68"
+          },
+          {
+            "title": "最新报告 - 医疗健康",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/62"
+          },
+          {
+            "title": "最新报告 - 先进制造",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/61"
+          },
+          {
+            "title": "最新报告 - 能源环保",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/77"
+          },
+          {
+            "title": "最新报告 - 区块链",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/76"
+          },
+          {
+            "title": "最新报告 - 其他",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/report/1/81"
           }
         ],
         "view": 0,
-        "location": "chart.ts",
-        "module": "() => import('@/routes/iresearch/chart.ts')"
+        "location": "report.ts",
+        "module": "() => import('@/routes/iresearch/report.ts')"
       },
-      "/report": {
-        "path": "/report",
+      "/weekly/:id?": {
+        "path": "/weekly/:id?",
+        "name": "周度市场观察",
+        "url": "www.iresearch.com.cn",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/iresearch/weekly",
+        "parameters": {
+          "id": {
+            "description": "行业 ID，默认为全部，即全部行业，可在对应行业页 URL 中找到",
+            "options": [
+              {
+                "label": "全部",
+                "value": ""
+              },
+              {
+                "label": "家电行业",
+                "value": "1"
+              },
+              {
+                "label": "服装行业",
+                "value": "2"
+              },
+              {
+                "label": "美妆行业",
+                "value": "3"
+              },
+              {
+                "label": "食品饮料行业",
+                "value": "4"
+              },
+              {
+                "label": "酒行业",
+                "value": "5"
+              }
+            ]
+          }
+        },
+        "description": ":::tip\n订阅 [家电行业](https://www.iresearch.com.cn/report.shtml?type=3&classId=1)，其源网址为 `https://www.iresearch.com.cn/report.shtml?type=3&classId=1`，请参考该 URL 指定部分构成参数，此时路由为 [`/iresearch/weekly/家电行业`](https://rsshub.app/iresearch/weekly/家电行业) 或 [`/iresearch/weekly/1`](https://rsshub.app/iresearch/weekly/1)。\n:::\n\n| 名称                                                                       | ID                                           |\n| -------------------------------------------------------------------------- | -------------------------------------------- |\n| [家电行业](https://www.iresearch.com.cn/report.shtml?type=3&classId=1)     | [1](https://rsshub.app/iresearch/report/3/1) |\n| [服装行业](https://www.iresearch.com.cn/report.shtml?type=3&classId=2)     | [2](https://rsshub.app/iresearch/report/3/2) |\n| [美妆行业](https://www.iresearch.com.cn/report.shtml?type=3&classId=3)     | [3](https://rsshub.app/iresearch/report/3/3) |\n| [食品饮料行业](https://www.iresearch.com.cn/report.shtml?type=3&classId=4) | [4](https://rsshub.app/iresearch/report/3/4) |\n| [酒行业](https://www.iresearch.com.cn/report.shtml?type=3&classId=5)       | [5](https://rsshub.app/iresearch/report/3/5) |\n",
         "categories": [
           "other"
         ],
-        "example": "/iresearch/report",
-        "parameters": {},
         "features": {
           "requireConfig": false,
           "requirePuppeteer": false,
           "antiCrawler": false,
+          "supportRadar": true,
           "supportBT": false,
           "supportPodcast": false,
           "supportScihub": false
@@ -60264,46 +62660,54 @@
             "source": [
               "www.iresearch.com.cn/report.shtml"
             ]
+          },
+          {
+            "title": "家电行业",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/weekly/1"
+          },
+          {
+            "title": "服装行业",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/weekly/2"
+          },
+          {
+            "title": "美妆行业",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/weekly/3"
+          },
+          {
+            "title": "食品饮料行业",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/weekly/4"
+          },
+          {
+            "title": "酒行业",
+            "source": [
+              "www.iresearch.com.cn/report.shtml"
+            ],
+            "target": "/weekly/5"
           }
         ],
-        "name": "产业研究报告",
-        "maintainers": [
-          "brilon",
-          "Fatpandac"
-        ],
-        "url": "www.iresearch.com.cn/report.shtml",
-        "location": "report.ts",
-        "module": "() => import('@/routes/iresearch/report.ts')"
-      },
-      "/weekly/:category?": {
-        "path": "/weekly/:category?",
-        "categories": [
-          "other"
-        ],
-        "example": "/iresearch/weekly",
-        "parameters": {
-          "category": "分类，见下表，默认为全部"
-        },
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "name": "周度市场观察",
-        "maintainers": [
-          "nczitzk"
-        ],
-        "description": "| 家电行业 | 服装行业 | 美妆行业 | 食品饮料行业 |\n| -------- | -------- | -------- | ------------ |",
+        "view": 0,
         "location": "weekly.ts",
         "module": "() => import('@/routes/iresearch/weekly.ts')"
       }
     },
-    "name": "艾瑞",
-    "apiRoutes": {},
-    "url": "www.iresearch.com.cn",
+    "name": "艾瑞咨询",
+    "url": "iresearch.com.cn",
+    "categories": [
+      "other"
+    ],
+    "description": "",
     "lang": "zh-CN"
   },
   "isct": {
@@ -63434,6 +65838,1422 @@
     "name": "晋江文学城",
     "apiRoutes": {},
     "url": "jjwxc.net",
+    "lang": "zh-CN"
+  },
+  "jl1mall": {
+    "routes": {
+      "/forum/:type?/:key?": {
+        "path": "/forum/:type?/:key?",
+        "name": "星林社区",
+        "url": "www.jl1mall.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/jl1mall/forum/2",
+        "parameters": {
+          "type": {
+            "description": "类型，默认为 `2`，即最新",
+            "options": [
+              {
+                "label": "推荐",
+                "value": "recommend"
+              },
+              {
+                "label": "热门",
+                "value": "1"
+              },
+              {
+                "label": "最新",
+                "value": "2"
+              }
+            ]
+          },
+          "key": {
+            "description": "关键字，默认为全部",
+            "options": [
+              {
+                "label": "遥感开发者培训班",
+                "value": "20240520150900005395"
+              },
+              {
+                "label": "吉林一号杯创新大赛",
+                "value": "202405201509000193524"
+              },
+              {
+                "label": "安全与情报分析",
+                "value": "20240828170700012219"
+              },
+              {
+                "label": "农业农村",
+                "value": "202306141504000458181"
+              },
+              {
+                "label": "生态环保",
+                "value": "202306141504000549335"
+              },
+              {
+                "label": "城市建设",
+                "value": "20230614150500000306"
+              },
+              {
+                "label": "金融投资",
+                "value": "202306141505000067369"
+              },
+              {
+                "label": "应急减灾",
+                "value": "202306141505000133827"
+              },
+              {
+                "label": "地球科学",
+                "value": "202306141514000061581"
+              },
+              {
+                "label": "固体地球物理学",
+                "value": "202306141517000575939"
+              },
+              {
+                "label": "地球化学",
+                "value": "202306141518000085359"
+              },
+              {
+                "label": "地图学",
+                "value": "202306141518000157744"
+              },
+              {
+                "label": "地质学",
+                "value": "202306141518000241039"
+              },
+              {
+                "label": "海洋科学",
+                "value": "202306141518000393987"
+              },
+              {
+                "label": "大气科学",
+                "value": "202306141529000041839"
+              },
+              {
+                "label": "空间物理学",
+                "value": "202306141529000242849"
+              },
+              {
+                "label": "大地测量学",
+                "value": "202306141529000425495"
+              },
+              {
+                "label": "地理学",
+                "value": "202306141530000014753"
+              },
+              {
+                "label": "水文学",
+                "value": "202306141530000174894"
+              },
+              {
+                "label": "测绘科学技术",
+                "value": "20230614151500026119"
+              },
+              {
+                "label": "大地测量技术",
+                "value": "202306141520000005256"
+              },
+              {
+                "label": "摄影测量与遥感技术",
+                "value": "202306141520000106520"
+              },
+              {
+                "label": "地图制图技术",
+                "value": "202306141520000178541"
+              },
+              {
+                "label": "工程测量技术",
+                "value": "202306141520000258701"
+              },
+              {
+                "label": "海洋测绘",
+                "value": "202306141520000324966"
+              },
+              {
+                "label": "测绘仪器",
+                "value": "202306141520000414316"
+              },
+              {
+                "label": "农学",
+                "value": "202306141515000341910"
+              },
+              {
+                "label": "农业基础学科",
+                "value": "202306141521000277547"
+              },
+              {
+                "label": "农艺学",
+                "value": "202306141521000365043"
+              },
+              {
+                "label": "园艺学",
+                "value": "202306141521000438505"
+              },
+              {
+                "label": "土壤学",
+                "value": "202306141521000505344"
+              },
+              {
+                "label": "植物保护学",
+                "value": "202306141522000009366"
+              },
+              {
+                "label": "农业工程",
+                "value": "202306141522000082860"
+              },
+              {
+                "label": "林学",
+                "value": "202306141515000385043"
+              },
+              {
+                "label": "林业基础学科",
+                "value": "202306141522000436479"
+              },
+              {
+                "label": "森林培育学",
+                "value": "20230614152200051361"
+              },
+              {
+                "label": "林木遗传育种学",
+                "value": "202306141523000295017"
+              },
+              {
+                "label": "森林经理学",
+                "value": "202306141523000466296"
+              },
+              {
+                "label": "森林保护学",
+                "value": "202306141523000531935"
+              },
+              {
+                "label": "野生动物保护与管理",
+                "value": "202306141523000595037"
+              },
+              {
+                "label": "防护林学",
+                "value": "202306141524000045940"
+              },
+              {
+                "label": "经济林学",
+                "value": "202306141524000113348"
+              },
+              {
+                "label": "园林学",
+                "value": "202306141524000179836"
+              },
+              {
+                "label": "林业工程",
+                "value": "202306141524000235618"
+              },
+              {
+                "label": "森林统计学",
+                "value": "202306141524000289370"
+              },
+              {
+                "label": "林业经济学",
+                "value": "202306141524000339222"
+              },
+              {
+                "label": "环境科学技术",
+                "value": "20230614151500047789"
+              },
+              {
+                "label": "环境科学技术基础学科",
+                "value": "202306141535000054532"
+              },
+              {
+                "label": "环境学",
+                "value": "202306141535000112080"
+              },
+              {
+                "label": "环境工程学",
+                "value": "202306141535000231152"
+              },
+              {
+                "label": "计算机科学技术",
+                "value": "202306141515000576514"
+              },
+              {
+                "label": "计算机科学技术基础学科",
+                "value": "202306141542000549959"
+              },
+              {
+                "label": "人工智能",
+                "value": "202306141543000006811"
+              },
+              {
+                "label": "计算机系统结构",
+                "value": "202306141543000067343"
+              },
+              {
+                "label": "计算机软件",
+                "value": "202306141543000131149"
+              },
+              {
+                "label": "计算机工程",
+                "value": "2023061415430002541"
+              },
+              {
+                "label": "计算机应用",
+                "value": "202306141543000301013"
+              },
+              {
+                "label": "水利工程",
+                "value": "20230614151600024423"
+              },
+              {
+                "label": "水利工程基础学科",
+                "value": "202306141548000086089"
+              },
+              {
+                "label": "水利工程测量",
+                "value": "202306141548000124678"
+              },
+              {
+                "label": "水工材料",
+                "value": "202306141548000185107"
+              },
+              {
+                "label": "水工结构",
+                "value": "202306141548000324892"
+              },
+              {
+                "label": "水力机械",
+                "value": "202306141548000395969"
+              },
+              {
+                "label": "水利工程施工",
+                "value": "20230614154800046627"
+              },
+              {
+                "label": "水处理",
+                "value": "202306141548000525441"
+              },
+              {
+                "label": "河流泥沙工程学",
+                "value": "202306141548000576930"
+              },
+              {
+                "label": "海洋工程",
+                "value": "202306141549000036382"
+              },
+              {
+                "label": "环境水利",
+                "value": "202306141549000098809"
+              },
+              {
+                "label": "水利管理",
+                "value": "202306141549000142714"
+              },
+              {
+                "label": "防洪工程",
+                "value": "202306141549000206899"
+              },
+              {
+                "label": "水利经济学",
+                "value": "202306141549000273808"
+              },
+              {
+                "label": "矿山工程技术",
+                "value": "202306141516000327936"
+              },
+              {
+                "label": "矿山地质学",
+                "value": "202306141550000508559"
+              },
+              {
+                "label": "矿山测量",
+                "value": "202306141550000555267"
+              },
+              {
+                "label": "矿山设计",
+                "value": "202306141551000009480"
+              },
+              {
+                "label": "矿山地面工程",
+                "value": "202306141551000059854"
+              },
+              {
+                "label": "井巷工程",
+                "value": "202306141551000091874"
+              },
+              {
+                "label": "采矿工程",
+                "value": "202306141551000145716"
+              },
+              {
+                "label": "选矿工程",
+                "value": "202306141551000196626"
+              },
+              {
+                "label": "钻井工程",
+                "value": "202306141551000242890"
+              },
+              {
+                "label": "油气田井开发工程",
+                "value": "202306141551000281559"
+              },
+              {
+                "label": "矿山机械工程",
+                "value": "202306141551000444214"
+              },
+              {
+                "label": "石油、天然气储存与运输工程",
+                "value": "202306141551000496258"
+              },
+              {
+                "label": "矿山电气工程",
+                "value": "20230614155100054576"
+              },
+              {
+                "label": "采矿环境工程",
+                "value": "202306141551000586807"
+              },
+              {
+                "label": "矿山安全",
+                "value": "202306141552000015381"
+              },
+              {
+                "label": "矿山综合利用工程",
+                "value": "202306141552000058779"
+              },
+              {
+                "label": "地信系统",
+                "value": "202306141507000026855"
+              },
+              {
+                "label": "Web前端",
+                "value": "202306141507000175842"
+              },
+              {
+                "label": "Web后端",
+                "value": "202307101453000087320"
+              },
+              {
+                "label": "部署运维",
+                "value": "202306141609000132025"
+              },
+              {
+                "label": "移动端",
+                "value": "202307101453000139149"
+              },
+              {
+                "label": "目标识别",
+                "value": "202306141509000181523"
+              },
+              {
+                "label": "语义分割",
+                "value": "202306141509000243978"
+              },
+              {
+                "label": "时序分析",
+                "value": "202306141509000328187"
+              },
+              {
+                "label": "样本标注",
+                "value": "202306141614000383945"
+              },
+              {
+                "label": "制图工具",
+                "value": "202306141615000281579"
+              },
+              {
+                "label": "矢量数据处理",
+                "value": "20230614161700031265"
+              },
+              {
+                "label": "地物分类",
+                "value": "20230710114400052654"
+              },
+              {
+                "label": "变化检测",
+                "value": "202307101145000028636"
+              },
+              {
+                "label": "定量反演",
+                "value": "202307101347000522903"
+              },
+              {
+                "label": "QGIS",
+                "value": "202307101101000417309"
+              },
+              {
+                "label": "ArcGIS",
+                "value": "202307101102000009946"
+              },
+              {
+                "label": "LabelImg",
+                "value": "20230710110200008240"
+              },
+              {
+                "label": "uDig",
+                "value": "20230710110200016279"
+              },
+              {
+                "label": "ENVI",
+                "value": "202307101102000384177"
+              },
+              {
+                "label": "GEE",
+                "value": "202307101103000459525"
+              },
+              {
+                "label": "其他",
+                "value": "202307101103000548964"
+              },
+              {
+                "label": "Python",
+                "value": "202306141647000449681"
+              },
+              {
+                "label": "Matlab",
+                "value": "202306141647000532735"
+              },
+              {
+                "label": "C++",
+                "value": "202306141647000574253"
+              },
+              {
+                "label": "JAVA",
+                "value": "202307101453000516747"
+              },
+              {
+                "label": "JavaScript",
+                "value": "202307101509000578236"
+              },
+              {
+                "label": "Kotlin",
+                "value": "202307101558000228562"
+              },
+              {
+                "label": "Dart",
+                "value": "202307101608000249435"
+              },
+              {
+                "label": "领域咨询",
+                "value": "202306141647000349567"
+              }
+            ]
+          }
+        },
+        "description": ":::tip\n订阅 [星林社区遥感开发者培训班的最新内容](https://www.jl1mall.com/forum/)，此时路由为 [`/jl1mall/forum/2/`](https://rsshub.app/jl1mall/forum/2/遥感开发者培训班)。\n:::\n",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "title": "推荐",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/recommend"
+          },
+          {
+            "title": "热门",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/1"
+          },
+          {
+            "title": "最新",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2"
+          },
+          {
+            "title": "特别专区",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202405201508000363847"
+          },
+          {
+            "title": "遥感开发者培训班",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20240520150900005395"
+          },
+          {
+            "title": "吉林一号杯创新大赛",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202405201509000193524"
+          },
+          {
+            "title": "应用领域",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141504000029820"
+          },
+          {
+            "title": "安全与情报分析",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20240828170700012219"
+          },
+          {
+            "title": "农业农村",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141504000458181"
+          },
+          {
+            "title": "生态环保",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141504000549335"
+          },
+          {
+            "title": "城市建设",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20230614150500000306"
+          },
+          {
+            "title": "金融投资",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141505000067369"
+          },
+          {
+            "title": "应急减灾",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141505000133827"
+          },
+          {
+            "title": "学科名称",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141504000106265"
+          },
+          {
+            "title": "地球科学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141514000061581"
+          },
+          {
+            "title": "固体地球物理学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141517000575939"
+          },
+          {
+            "title": "地球化学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141518000085359"
+          },
+          {
+            "title": "地图学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141518000157744"
+          },
+          {
+            "title": "地质学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141518000241039"
+          },
+          {
+            "title": "海洋科学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141518000393987"
+          },
+          {
+            "title": "大气科学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141529000041839"
+          },
+          {
+            "title": "空间物理学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141529000242849"
+          },
+          {
+            "title": "大地测量学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141529000425495"
+          },
+          {
+            "title": "地理学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141530000014753"
+          },
+          {
+            "title": "水文学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141530000174894"
+          },
+          {
+            "title": "测绘科学技术",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20230614151500026119"
+          },
+          {
+            "title": "大地测量技术",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141520000005256"
+          },
+          {
+            "title": "摄影测量与遥感技术",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141520000106520"
+          },
+          {
+            "title": "地图制图技术",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141520000178541"
+          },
+          {
+            "title": "工程测量技术",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141520000258701"
+          },
+          {
+            "title": "海洋测绘",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141520000324966"
+          },
+          {
+            "title": "测绘仪器",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141520000414316"
+          },
+          {
+            "title": "农学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141515000341910"
+          },
+          {
+            "title": "农业基础学科",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141521000277547"
+          },
+          {
+            "title": "农艺学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141521000365043"
+          },
+          {
+            "title": "园艺学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141521000438505"
+          },
+          {
+            "title": "土壤学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141521000505344"
+          },
+          {
+            "title": "植物保护学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141522000009366"
+          },
+          {
+            "title": "农业工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141522000082860"
+          },
+          {
+            "title": "林学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141515000385043"
+          },
+          {
+            "title": "林业基础学科",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141522000436479"
+          },
+          {
+            "title": "森林培育学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20230614152200051361"
+          },
+          {
+            "title": "林木遗传育种学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141523000295017"
+          },
+          {
+            "title": "森林经理学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141523000466296"
+          },
+          {
+            "title": "森林保护学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141523000531935"
+          },
+          {
+            "title": "野生动物保护与管理",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141523000595037"
+          },
+          {
+            "title": "防护林学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141524000045940"
+          },
+          {
+            "title": "经济林学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141524000113348"
+          },
+          {
+            "title": "园林学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141524000179836"
+          },
+          {
+            "title": "林业工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141524000235618"
+          },
+          {
+            "title": "森林统计学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141524000289370"
+          },
+          {
+            "title": "林业经济学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141524000339222"
+          },
+          {
+            "title": "环境科学技术",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20230614151500047789"
+          },
+          {
+            "title": "环境科学技术基础学科",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141535000054532"
+          },
+          {
+            "title": "环境学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141535000112080"
+          },
+          {
+            "title": "环境工程学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141535000231152"
+          },
+          {
+            "title": "计算机科学技术",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141515000576514"
+          },
+          {
+            "title": "计算机科学技术基础学科",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141542000549959"
+          },
+          {
+            "title": "人工智能",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141543000006811"
+          },
+          {
+            "title": "计算机系统结构",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141543000067343"
+          },
+          {
+            "title": "计算机软件",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141543000131149"
+          },
+          {
+            "title": "计算机工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/2023061415430002541"
+          },
+          {
+            "title": "计算机应用",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141543000301013"
+          },
+          {
+            "title": "水利工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20230614151600024423"
+          },
+          {
+            "title": "水利工程基础学科",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141548000086089"
+          },
+          {
+            "title": "水利工程测量",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141548000124678"
+          },
+          {
+            "title": "水工材料",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141548000185107"
+          },
+          {
+            "title": "水工结构",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141548000324892"
+          },
+          {
+            "title": "水力机械",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141548000395969"
+          },
+          {
+            "title": "水利工程施工",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20230614154800046627"
+          },
+          {
+            "title": "水处理",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141548000525441"
+          },
+          {
+            "title": "河流泥沙工程学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141548000576930"
+          },
+          {
+            "title": "海洋工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141549000036382"
+          },
+          {
+            "title": "环境水利",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141549000098809"
+          },
+          {
+            "title": "水利管理",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141549000142714"
+          },
+          {
+            "title": "防洪工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141549000206899"
+          },
+          {
+            "title": "水利经济学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141549000273808"
+          },
+          {
+            "title": "矿山工程技术",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141516000327936"
+          },
+          {
+            "title": "矿山地质学",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141550000508559"
+          },
+          {
+            "title": "矿山测量",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141550000555267"
+          },
+          {
+            "title": "矿山设计",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141551000009480"
+          },
+          {
+            "title": "矿山地面工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141551000059854"
+          },
+          {
+            "title": "井巷工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141551000091874"
+          },
+          {
+            "title": "采矿工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141551000145716"
+          },
+          {
+            "title": "选矿工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141551000196626"
+          },
+          {
+            "title": "钻井工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141551000242890"
+          },
+          {
+            "title": "油气田井开发工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141551000281559"
+          },
+          {
+            "title": "矿山机械工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141551000444214"
+          },
+          {
+            "title": "石油、天然气储存与运输工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141551000496258"
+          },
+          {
+            "title": "矿山电气工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20230614155100054576"
+          },
+          {
+            "title": "采矿环境工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141551000586807"
+          },
+          {
+            "title": "矿山安全",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141552000015381"
+          },
+          {
+            "title": "矿山综合利用工程",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141552000058779"
+          },
+          {
+            "title": "软件开发",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141506000485537"
+          },
+          {
+            "title": "地信系统",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141507000026855"
+          },
+          {
+            "title": "Web前端",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141507000175842"
+          },
+          {
+            "title": "Web后端",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101453000087320"
+          },
+          {
+            "title": "部署运维",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141609000132025"
+          },
+          {
+            "title": "移动端",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101453000139149"
+          },
+          {
+            "title": "信息解译",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141508000116074"
+          },
+          {
+            "title": "目标识别",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141509000181523"
+          },
+          {
+            "title": "语义分割",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141509000243978"
+          },
+          {
+            "title": "时序分析",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141509000328187"
+          },
+          {
+            "title": "样本标注",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141614000383945"
+          },
+          {
+            "title": "制图工具",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141615000281579"
+          },
+          {
+            "title": "矢量数据处理",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20230614161700031265"
+          },
+          {
+            "title": "地物分类",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20230710114400052654"
+          },
+          {
+            "title": "变化检测",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101145000028636"
+          },
+          {
+            "title": "定量反演",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101347000522903"
+          },
+          {
+            "title": "工具软件",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141647000009469"
+          },
+          {
+            "title": "QGIS",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101101000417309"
+          },
+          {
+            "title": "ArcGIS",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101102000009946"
+          },
+          {
+            "title": "LabelImg",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20230710110200008240"
+          },
+          {
+            "title": "uDig",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/20230710110200016279"
+          },
+          {
+            "title": "ENVI",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101102000384177"
+          },
+          {
+            "title": "GEE",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101103000459525"
+          },
+          {
+            "title": "其他",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101103000548964"
+          },
+          {
+            "title": "编程语言",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141647000105840"
+          },
+          {
+            "title": "Python",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141647000449681"
+          },
+          {
+            "title": "Matlab",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141647000532735"
+          },
+          {
+            "title": "C++",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141647000574253"
+          },
+          {
+            "title": "JAVA",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101453000516747"
+          },
+          {
+            "title": "JavaScript",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101509000578236"
+          },
+          {
+            "title": "Kotlin",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101558000228562"
+          },
+          {
+            "title": "Dart",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202307101608000249435"
+          },
+          {
+            "title": "其他",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141647000212675"
+          },
+          {
+            "title": "领域咨询",
+            "source": [
+              "www.jl1mall.com/forum/"
+            ],
+            "target": "/forum/2/202306141647000349567"
+          }
+        ],
+        "view": 0,
+        "location": "forum.ts",
+        "module": "() => import('@/routes/jl1mall/forum.ts')"
+      }
+    },
+    "name": "吉林一号网",
+    "apiRoutes": {},
+    "url": "jl1mall.com",
+    "categories": [
+      "new-media"
+    ],
+    "description": "",
     "lang": "zh-CN"
   },
   "jlu": {
@@ -73772,9 +77592,11 @@
         },
         "name": "Search",
         "maintainers": [
-          "yana9i, Tsuyumi25"
+          "yana9i",
+          "Tsuyumi25"
         ],
         "url": "jp.mercari.com",
+        "description": "::: warning\n此路由僅支援 `jp.mercari.com`，不支援 `tw.mercari.com` 和 `hk.mercari.com`。\n\n**注意：** 不同站點的查詢參數格式不同\n- 日本: `keyword=シャツ&order=desc&sort=created_time&status=on_sale`\n- 台灣: `keyword=シャツ&sort=new&status=in-stock&availability=1`\n:::",
         "location": "search.ts",
         "module": "() => import('@/routes/mercari/search.ts')"
       }
@@ -75398,6 +79220,41 @@
       "social-media"
     ]
   },
+  "miyuki": {
+    "routes": {
+      "/news": {
+        "path": "/news",
+        "example": "/miyuki/news",
+        "name": "News",
+        "categories": [
+          "new-media"
+        ],
+        "maintainers": [
+          "KarasuShin"
+        ],
+        "features": {
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "miyuki.jp",
+              "miyuki.jp/s/y10/news/list"
+            ],
+            "target": "/news"
+          }
+        ],
+        "location": "news.ts",
+        "module": "() => import('@/routes/miyuki/news.ts')"
+      }
+    },
+    "name": "中島みゆき Official",
+    "url": "miyuki.jp",
+    "lang": "ja",
+    "categories": [
+      "new-media"
+    ]
+  },
   "modb": {
     "routes": {
       "/topic/:id": {
@@ -76602,9 +80459,9 @@
         ],
         "example": "/mymusicsheet/user/sheets/HalcyonMusic/USD/1",
         "parameters": {
-          "username": "用户名，可在URL中找到",
-          "iso": "用于显示价格的ISO 4217货币代码, 支持常见代码, 默认为人民币, 即`CNY`",
-          "freeOnly": "只返回免费谱, 任意值为开启"
+          "username": "Username, can be found in the URL",
+          "iso": "ISO 4217 currency code for displaying prices, defaults to `USD`",
+          "freeOnly": "Only return free scores, any value to enable"
         },
         "features": {
           "requireConfig": false,
@@ -76617,8 +80474,8 @@
         "radar": [
           {
             "source": [
-              "mymusicsheet.com/:username/*",
-              "mymusicsheet.com/:username"
+              "mymusicfive.com/:username/*",
+              "mymusicfive.com/:username"
             ],
             "target": "/user/sheets/:username"
           }
@@ -76627,13 +80484,13 @@
         "maintainers": [
           "Freddd13"
         ],
-        "description": "关于 ISO 4217，请参考[维基百科](https://zh.wikipedia.org/zh-cn/ISO_4217#%E7%8E%B0%E8%A1%8C%E4%BB%A3%E7%A0%81)",
+        "description": "Please refer to [Wikipedia](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) for ISO 4217.",
         "location": "usersheets.ts",
         "module": "() => import('@/routes/mymusicsheet/usersheets.ts')"
       }
     },
-    "name": "MyMusicSheet",
-    "url": "mymusicsheet.com",
+    "name": "mymusic5 (MyMusicSheet)",
+    "url": "mymusicfive.com",
     "lang": "en"
   },
   "mysql": {
@@ -78359,6 +82216,175 @@
     "name": "Netflav",
     "apiRoutes": {},
     "url": "netflav.com",
+    "lang": "en"
+  },
+  "netflix": {
+    "routes": {
+      "/newsroom/:category?/:region?": {
+        "path": "/newsroom/:category?/:region?",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/netflix/newsroom",
+        "parameters": {
+          "category": {
+            "description": "Category",
+            "default": "all",
+            "options": [
+              {
+                "value": "all",
+                "label": "All News"
+              },
+              {
+                "value": "business",
+                "label": "Business"
+              },
+              {
+                "value": "entertainment",
+                "label": "Entertainment"
+              },
+              {
+                "value": "product",
+                "label": "Product"
+              },
+              {
+                "value": "impact",
+                "label": "Social Impact"
+              }
+            ]
+          },
+          "region": {
+            "description": "Region, can be found in the region URL",
+            "default": "en",
+            "options": [
+              {
+                "value": "ar",
+                "label": "اللغة العربية"
+              },
+              {
+                "value": "de",
+                "label": "Deutsch"
+              },
+              {
+                "value": "el",
+                "label": "Ελληνικά"
+              },
+              {
+                "value": "en",
+                "label": "English"
+              },
+              {
+                "value": "es",
+                "label": "Español (LatAm)"
+              },
+              {
+                "value": "es-es",
+                "label": "Español (España)"
+              },
+              {
+                "value": "fr",
+                "label": "Français"
+              },
+              {
+                "value": "id",
+                "label": "Bahasa Indonesia"
+              },
+              {
+                "value": "it",
+                "label": "Italiano"
+              },
+              {
+                "value": "ja",
+                "label": "日本語"
+              },
+              {
+                "value": "ko",
+                "label": "한국어"
+              },
+              {
+                "value": "pl",
+                "label": "Polski"
+              },
+              {
+                "value": "pt-br",
+                "label": "Português (Brasil)"
+              },
+              {
+                "value": "pt-pt",
+                "label": "Português (Portugal)"
+              },
+              {
+                "value": "ro",
+                "label": "Română"
+              },
+              {
+                "value": "ru",
+                "label": "русский"
+              },
+              {
+                "value": "th",
+                "label": "ไทย"
+              },
+              {
+                "value": "tr",
+                "label": "Türkçe"
+              },
+              {
+                "value": "vi",
+                "label": "Tiếng Việt"
+              },
+              {
+                "value": "zh-hans",
+                "label": "简体中文"
+              },
+              {
+                "value": "zh-hant",
+                "label": "繁體中文"
+              }
+            ]
+          }
+        },
+        "radar": [
+          {
+            "source": [
+              "about.netflix.com/:region/newsroom",
+              "netflix.com"
+            ]
+          }
+        ],
+        "name": "Newsroom",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "url": "about.netflix.com/",
+        "location": "newsroom.ts",
+        "module": "() => import('@/routes/netflix/newsroom.ts')"
+      },
+      "/research": {
+        "path": "/research",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/netflix/research",
+        "radar": [
+          {
+            "source": [
+              "research.netflix.com/archive",
+              "research.netflix.com"
+            ]
+          }
+        ],
+        "name": "Research",
+        "maintainers": [
+          "TonyRL"
+        ],
+        "url": "research.netflix.com/",
+        "location": "research.ts",
+        "module": "() => import('@/routes/netflix/research.ts')"
+      }
+    },
+    "name": "Netflix",
+    "url": "netflix.com",
     "lang": "en"
   },
   "neu": {
@@ -81761,7 +85787,7 @@
         "module": "() => import('@/routes/npr/full.ts')"
       }
     },
-    "name": "National Public Radio",
+    "name": "NPR (National Public Radio)",
     "apiRoutes": {},
     "url": "npr.org",
     "lang": "en"
@@ -81844,6 +85870,43 @@
     "apiRoutes": {},
     "url": "www.ntdtv.com",
     "lang": "zh-CN"
+  },
+  "ntrblog": {
+    "routes": {
+      "/articles": {
+        "path": "/articles",
+        "categories": [
+          "anime"
+        ],
+        "example": "/ntrblog/articles",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false,
+          "nsfw": true
+        },
+        "name": "Articles",
+        "maintainers": [
+          "keocheung"
+        ],
+        "radar": [
+          {
+            "source": [
+              "ntrblog.com"
+            ]
+          }
+        ],
+        "location": "articles.ts",
+        "module": "() => import('@/routes/ntrblog/articles.ts')"
+      }
+    },
+    "name": "NTR BLOG（寝取られブログ）",
+    "apiRoutes": {},
+    "url": "ntrblog.com",
+    "lang": "ja"
   },
   "nua": {
     "routes": {
@@ -84162,6 +88225,50 @@
     "url": "oreno3d.com",
     "description": "::: tip\nYou can use some RSS parsing libraries (like `feedpraser` in `Python`) to receive the video update messages and download them automatically\n:::",
     "lang": "ja"
+  },
+  "ornl": {
+    "routes": {
+      "/all-news": {
+        "path": "/all-news",
+        "name": "All News",
+        "url": "www.ornl.gov",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/ornl/all-news",
+        "categories": [
+          "government"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.ornl.gov/all-news"
+            ],
+            "target": "/all-news"
+          }
+        ],
+        "view": 0,
+        "location": "all-news.ts",
+        "module": "() => import('@/routes/ornl/all-news.ts')"
+      }
+    },
+    "name": "Oak Ridge National Laboratory",
+    "apiRoutes": {},
+    "url": "ornl.gov",
+    "categories": [
+      "government"
+    ],
+    "description": "",
+    "lang": "en"
   },
   "oschina": {
     "routes": {
@@ -104195,18 +108302,21 @@
           "traditional-media"
         ],
         "example": "/stdaily/digitalpaper",
-        "parameters": {},
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
         "name": "科技日报",
         "maintainers": [
-          "lyqluis"
+          "lyqluis",
+          "KarasuShin"
+        ],
+        "features": {
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "epaper.stdaily.com/statics/technology-site/index.html"
+            ],
+            "target": "/digitalpaper"
+          }
         ],
         "location": "digitalpaper.ts",
         "module": "() => import('@/routes/stdaily/digitalpaper.ts')"
@@ -104214,7 +108324,7 @@
     },
     "name": "中国科技网",
     "apiRoutes": {},
-    "url": "digitalpaper.stdaily.com",
+    "url": "epaper.stdaily.com",
     "lang": "zh-CN"
   },
   "steam": {
@@ -113583,7 +117693,7 @@
         "maintainers": [
           "akynazh"
         ],
-        "description": "::: tip\n将榜单条目集合到一个列表中，可避免推送大量条目，更符合阅读习惯且有热度排序，推荐使用。\n:::",
+        "description": "::: tip\n将榜单条目集合到一个列表中，且有热度排序，可避免推送大量条目。\n:::",
         "location": "list.ts",
         "module": "() => import('@/routes/tophub/list.ts')"
       }
@@ -125319,7 +129429,7 @@
           "requireConfig": [
             {
               "name": "YOUTUBE_KEY",
-              "description": " YouTube API Key, support multiple keys, split them with `,`, [API Key application](https://console.developers.google.com/)"
+              "description": "YouTube API Key, support multiple keys, split them with `,`, [API Key application](https://console.developers.google.com/)"
             }
           ],
           "requirePuppeteer": false,
