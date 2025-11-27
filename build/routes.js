@@ -8295,6 +8295,44 @@ export default {
     "description": "",
     "lang": "zh-CN"
   },
+  "aiblog-2xv": {
+    "routes": {
+      "/archives": {
+        "path": "/archives",
+        "categories": [
+          "blog"
+        ],
+        "example": "/aiblog-2xv/archives",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "aiblog-2xv.pages.dev/archives"
+            ],
+            "target": "/archives"
+          }
+        ],
+        "name": "归档-全部文章",
+        "maintainers": [
+          "Liao-Ke"
+        ],
+        "location": "archives.ts",
+        "module": () => import('@/routes/aiblog-2xv/archives.ts')
+      }
+    },
+    "name": "AI 博客",
+    "apiRoutes": {},
+    "url": "aiblog-2xv.pages.dev",
+    "lang": "zh-CN"
+  },
   "aicaijing": {
     "routes": {
       "/:category?/:id?": {
@@ -21593,6 +21631,168 @@ export default {
     "url": "ccac.org.mo",
     "lang": "zh-HK"
   },
+  "ccagm": {
+    "routes": {
+      "/:category{.+}?": {
+        "path": "/:category{.+}?",
+        "name": "栏目",
+        "url": "www.ccagm.org.cn",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/ccagm/association-news",
+        "parameters": {
+          "category": {
+            "description": "分类，默认为 `association-news`，即协会动态，可在对应分类页 URL 中找到",
+            "options": [
+              {
+                "label": "协会动态",
+                "value": "association-news"
+              },
+              {
+                "label": "会议活动",
+                "value": "xh-activity/activities-huiyi"
+              },
+              {
+                "label": "调研与报告",
+                "value": "xh-activity/bg-yj"
+              },
+              {
+                "label": "协会党建",
+                "value": "xie-hui-dang-jian"
+              },
+              {
+                "label": "行业新闻",
+                "value": "members-info"
+              },
+              {
+                "label": "行业研究",
+                "value": "bg-yj"
+              },
+              {
+                "label": "行业标准",
+                "value": "industry-policy/industry-standard"
+              },
+              {
+                "label": "法律法规",
+                "value": "industry-policy/policies-regulations"
+              },
+              {
+                "label": "资料下载",
+                "value": "download"
+              },
+              {
+                "label": "工作总结与计划",
+                "value": "about-association/gong-zuo-zong-jie-yu-ji-hua"
+              }
+            ]
+          }
+        },
+        "description": ":::tip\n订阅 [协会动态](http://www.ccagm.org.cn/association-news)，其源网址为 `http://www.ccagm.org.cn/association-news`，请参考该 URL 指定部分构成参数，此时路由为 [`/ccagm/association-news`](https://rsshub.app/ccagm/association-news)。\n:::\n\n<details>\n  <summary>更多分类</summary>\n\n  | 栏目                                                                                         | ID                                                                                                                      |\n  | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |\n  | [协会动态](http://www.ccagm.org.cn/association-news.html)                                    | [association-news](https://rsshub.app/ccagm/association-news)                                                           |\n  | [会议活动](http://www.ccagm.org.cn/xh-activity/activities-huiyi.html)                        | [xh-activity/activities-huiyi](https://rsshub.app/ccagm/xh-activity/activities-huiyi)                                   |\n  | [调研与报告](http://www.ccagm.org.cn/xh-activity/bg-yj.html)                                 | [xh-activity/bg-yj](https://rsshub.app/ccagm/xh-activity/bg-yj)                                                         |\n  | [协会党建](http://www.ccagm.org.cn/xie-hui-dang-jian.html)                                   | [xie-hui-dang-jian](https://rsshub.app/ccagm/xie-hui-dang-jian)                                                         |\n  | [行业新闻](http://www.ccagm.org.cn/members-info.html)                                        | [members-info](https://rsshub.app/ccagm/members-info)                                                                   |\n  | [行业研究](http://www.ccagm.org.cn/bg-yj.html)                                               | [bg-yj](https://rsshub.app/ccagm/bg-yj)                                                                                 |\n  | [行业标准](http://www.ccagm.org.cn/industry-policy/industry-standard.html)                   | [industry-policy/industry-standard](https://rsshub.app/ccagm/industry-policy/industry-standard)                         |\n  | [法律法规](http://www.ccagm.org.cn/industry-policy/policies-regulations.html)                | [industry-policy/policies-regulations](https://rsshub.app/ccagm/industry-policy/policies-regulations)                   |\n  | [资料下载](http://www.ccagm.org.cn/download.html)                                            | [download](https://rsshub.app/ccagm/download)                                                                           |\n  | [工作总结与计划](http://www.ccagm.org.cn/about-association/gong-zuo-zong-jie-yu-ji-hua.html) | [about-association/gong-zuo-zong-jie-yu-ji-hua](https://rsshub.app/ccagm/about-association/gong-zuo-zong-jie-yu-ji-hua) |\n\n</details>\n",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.ccagm.org.cn/category?"
+            ],
+            "target": "/:category"
+          },
+          {
+            "title": "协会动态",
+            "source": [
+              "www.ccagm.org.cn/association-news.html"
+            ],
+            "target": "/association-news"
+          },
+          {
+            "title": "会议活动",
+            "source": [
+              "www.ccagm.org.cn/xh-activity/activities-huiyi.html"
+            ],
+            "target": "/xh-activity/activities-huiyi"
+          },
+          {
+            "title": "调研与报告",
+            "source": [
+              "www.ccagm.org.cn/xh-activity/bg-yj.html"
+            ],
+            "target": "/xh-activity/bg-yj"
+          },
+          {
+            "title": "协会党建",
+            "source": [
+              "www.ccagm.org.cn/xie-hui-dang-jian.html"
+            ],
+            "target": "/xie-hui-dang-jian"
+          },
+          {
+            "title": "行业新闻",
+            "source": [
+              "www.ccagm.org.cn/members-info.html"
+            ],
+            "target": "/members-info"
+          },
+          {
+            "title": "行业研究",
+            "source": [
+              "www.ccagm.org.cn/bg-yj.html"
+            ],
+            "target": "/bg-yj"
+          },
+          {
+            "title": "行业标准",
+            "source": [
+              "www.ccagm.org.cn/industry-policy/industry-standard.html"
+            ],
+            "target": "/industry-policy/industry-standard"
+          },
+          {
+            "title": "法律法规",
+            "source": [
+              "www.ccagm.org.cn/industry-policy/policies-regulations.html"
+            ],
+            "target": "/industry-policy/policies-regulations"
+          },
+          {
+            "title": "资料下载",
+            "source": [
+              "www.ccagm.org.cn/download.html"
+            ],
+            "target": "/download"
+          },
+          {
+            "title": "工作总结与计划",
+            "source": [
+              "www.ccagm.org.cn/about-association/gong-zuo-zong-jie-yu-ji-hua.html"
+            ],
+            "target": "/about-association/gong-zuo-zong-jie-yu-ji-hua"
+          }
+        ],
+        "view": 0,
+        "location": "index.ts",
+        "module": () => import('@/routes/ccagm/index.ts')
+      }
+    },
+    "name": "中国百货商业协会",
+    "apiRoutes": {},
+    "url": "ccagm.org.cn",
+    "categories": [
+      "new-media"
+    ],
+    "description": "",
+    "lang": "zh-CN"
+  },
   "cccfna": {
     "routes": {
       "/:category/:type?": {
@@ -25789,6 +25989,50 @@ export default {
     },
     "apiRoutes": {}
   },
+  "cloudflarestatus": {
+    "routes": {
+      "/": {
+        "path": "/",
+        "name": "Status",
+        "url": "www.cloudflarestatus.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/cloudflarestatus",
+        "categories": [
+          "programming"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.cloudflarestatus.com"
+            ],
+            "target": "/"
+          }
+        ],
+        "view": 5,
+        "location": "index.ts",
+        "module": () => import('@/routes/cloudflarestatus/index.ts')
+      }
+    },
+    "name": "Cloudflare Status",
+    "apiRoutes": {},
+    "url": "cloudflarestatus.com",
+    "categories": [
+      "programming"
+    ],
+    "description": "",
+    "lang": "en"
+  },
   "cloudnative": {
     "routes": {
       "/blog": {
@@ -26894,8 +27138,8 @@ export default {
   },
   "cnljxh": {
     "routes": {
-      "/news/:id?": {
-        "path": "/news/:id?",
+      "/:category?/:id?": {
+        "path": "/:category?/:id?",
         "name": "栏目",
         "url": "www.cnljxh.org.cn",
         "maintainers": [
@@ -26904,6 +27148,27 @@ export default {
         "example": "/cnljxh/news/10",
         "parameters": {
           "category": {
+            "description": "分类，默认为 `news`，即行业新闻，可在对应分类页 URL 中找到",
+            "options": [
+              {
+                "label": "行业新闻",
+                "value": "news"
+              },
+              {
+                "label": "市场价格",
+                "value": "price"
+              },
+              {
+                "label": "分析数据",
+                "value": "info"
+              },
+              {
+                "label": "价格指数",
+                "value": "date"
+              }
+            ]
+          },
+          "id": {
             "description": "分类，默认为 `10`，即协会公告，可在对应分类页 URL 中找到",
             "options": [
               {
@@ -27041,7 +27306,7 @@ export default {
             ]
           }
         },
-        "description": ":::tip\n订阅 [协会公告](https://www.cnljxh.org.cn/news/?classid=10)，其源网址为 `https://www.cnljxh.org.cn/news/?classid=10`，请参考该 URL 指定部分构成参数，此时路由为 [`/cnljxh/news/10`](https://rsshub.app/cnljxh/news/10)。\n:::\n\n<details>\n  <summary>更多分类</summary>\n\n  #### 协会专区\n\n  | [协会简介](https://www.cnljxh.org.cn/news/?classid=24) | [协会章程](https://www.cnljxh.org.cn/news/?classid=25) | [协会领导](https://www.cnljxh.org.cn/news/?classid=26) | [入会程序](https://www.cnljxh.org.cn/news/?classid=27) | [组织机构](https://www.cnljxh.org.cn/news/?classid=28) |\n  | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |\n  | [24](https://rsshub.app/cnljxh/news/24)                | [25](https://rsshub.app/cnljxh/news/25)                | [26](https://rsshub.app/cnljxh/news/26)                | [27](https://rsshub.app/cnljxh/news/27)                | [28](https://rsshub.app/cnljxh/news/28)                |\n\n  | [理事会员](https://www.cnljxh.org.cn/news/?classid=29) | [监事会](https://www.cnljxh.org.cn/news/?classid=32) | [专家委员会](https://www.cnljxh.org.cn/news/?classid=30) |\n  | ------------------------------------------------------ | ---------------------------------------------------- | -------------------------------------------------------- |\n  | [29](https://rsshub.app/cnljxh/news/29)                | [32](https://rsshub.app/cnljxh/news/32)              | [30](https://rsshub.app/cnljxh/news/30)                  |\n\n  #### 协会公告\n\n  | [协会公告](https://www.cnljxh.org.cn/news/?classid=10) |\n  | ------------------------------------------------------ |\n  | [10](https://rsshub.app/cnljxh/news/10)                |\n\n  #### 行业新闻\n\n  | [协会动态](https://www.cnljxh.org.cn/news/?classid=8) | [企业动态](https://www.cnljxh.org.cn/news/?classid=9) | [行业动态](https://www.cnljxh.org.cn/news/?classid=11) |\n  | ----------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------ |\n  | [8](https://rsshub.app/cnljxh/news/8)                 | [9](https://rsshub.app/cnljxh/news/9)                 | [11](https://rsshub.app/cnljxh/news/11)                |\n\n  #### 政策法规\n\n  | [政策法规](https://www.cnljxh.org.cn/news/?classid=12) |\n  | ------------------------------------------------------ |\n  | [12](https://rsshub.app/cnljxh/news/12)                |\n\n  #### 行业标准\n\n  | [国家标准](https://www.cnljxh.org.cn/news/?classid=13) | [行业标准](https://www.cnljxh.org.cn/news/?classid=14) | [团体标准](https://www.cnljxh.org.cn/news/?classid=15) |\n  | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |\n  | [13](https://rsshub.app/cnljxh/news/13)                | [14](https://rsshub.app/cnljxh/news/14)                | [15](https://rsshub.app/cnljxh/news/15)                |\n\n  #### 减污降碳\n\n  | [超低排放](https://www.cnljxh.org.cn/news/indexdp.php?classid=33) | [技术广角](https://www.cnljxh.org.cn/news/?classid=16) |\n  | ----------------------------------------------------------------- | ------------------------------------------------------ |\n  | [33](https://rsshub.app/cnljxh/news/33)                           | [16](https://rsshub.app/cnljxh/news/16)                |\n\n  #### 市场价格\n\n  | [价格行情](https://www.cnljxh.org.cn/price/?classid=299) | [双焦运费](https://www.cnljxh.org.cn/price/?classid=2143) | [价格汇总](https://www.cnljxh.org.cn/collect/?classid=10039) |\n  | -------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------ |\n  | [299](https://rsshub.app/cnljxh/news/299)                | [2143](https://rsshub.app/cnljxh/news/2143)               | [10039](https://rsshub.app/cnljxh/news/10039)                |\n\n  #### 分析数据\n\n  | [市场分析](https://www.cnljxh.org.cn/info/?classid=575) | [一周评述](https://www.cnljxh.org.cn/info/?classid=5573) | [核心数据](https://www.cnljxh.org.cn/info/?classid=5417) |\n  | ------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |\n  | [575](https://rsshub.app/cnljxh/news/575)               | [5573](https://rsshub.app/cnljxh/news/5573)              | [5417](https://rsshub.app/cnljxh/news/5417)              |\n\n  #### 价格指数\n\n  | [焦炭指数(MyCpic)](https://www.cnljxh.org.cn/date/?classid=5575) | [炼焦煤指数(MyCpic)](https://www.cnljxh.org.cn/date/?classid=5907) | [山西焦炭价格指数（SCSPI）](https://www.cnljxh.org.cn/news/index.php?classid=34) | [中价·新华焦煤价格指数（CCP）](https://www.cnljxh.org.cn/news/index.php?classid=35) |\n  | ---------------------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |\n  | [5575](https://rsshub.app/cnljxh/news/5575)                      | [5907](https://rsshub.app/cnljxh/news/5907)                        | [34](https://rsshub.app/cnljxh/news/34)                                          | [35](https://rsshub.app/cnljxh/news/35)                                             |\n\n  #### 市场信息\n\n  | [汾渭](https://www.cnljxh.org.cn/news/?classid=19) | [化工宝](https://www.cnljxh.org.cn/news/?classid=20) | [百川](https://www.cnljxh.org.cn/news/?classid=21) | [焦化市场信息](https://www.cnljxh.org.cn/news/?classid=22) | [中国焦化信息](https://www.cnljxh.org.cn/news/?classid=31) |\n  | -------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |\n  | [19](https://rsshub.app/cnljxh/news/19)            | [20](https://rsshub.app/cnljxh/news/20)              | [21](https://rsshub.app/cnljxh/news/21)            | [22](https://rsshub.app/cnljxh/news/22)                    | [31](https://rsshub.app/cnljxh/news/31)                    |\n\n</details>\n",
+        "description": ":::tip\n订阅 [协会公告](https://www.cnljxh.org.cn/news/?classid=10)，其源网址为 `https://www.cnljxh.org.cn/news/?classid=10`，请参考该 URL 指定部分构成参数，此时路由为 [`/cnljxh/news/10`](https://rsshub.app/cnljxh/news/10)。\n\n订阅 [价格行情](https://www.cnljxh.org.cn/price/?classid=299)，其源网址为 `https://www.cnljxh.org.cn/price/?classid=299`，请参考该 URL 指定部分构成参数，此时路由为 [`/cnljxh/price/299`](https://rsshub.app/cnljxh/price/299)。\n:::\n\n<details>\n  <summary>更多分类</summary>\n\n#### 协会专区\n\n| [协会简介](https://www.cnljxh.org.cn/news/?classid=24) | [协会章程](https://www.cnljxh.org.cn/news/?classid=25) | [协会领导](https://www.cnljxh.org.cn/news/?classid=26) | [入会程序](https://www.cnljxh.org.cn/news/?classid=27) | [组织机构](https://www.cnljxh.org.cn/news/?classid=28) |\n| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |\n| [24](https://rsshub.app/cnljxh/news/24)                | [25](https://rsshub.app/cnljxh/news/25)                | [26](https://rsshub.app/cnljxh/news/26)                | [27](https://rsshub.app/cnljxh/news/27)                | [28](https://rsshub.app/cnljxh/news/28)                |\n\n| [理事会员](https://www.cnljxh.org.cn/news/?classid=29) | [监事会](https://www.cnljxh.org.cn/news/?classid=32) | [专家委员会](https://www.cnljxh.org.cn/news/?classid=30) |\n| ------------------------------------------------------ | ---------------------------------------------------- | -------------------------------------------------------- |\n| [29](https://rsshub.app/cnljxh/news/29)                | [32](https://rsshub.app/cnljxh/news/32)              | [30](https://rsshub.app/cnljxh/news/30)                  |\n\n#### 协会公告\n\n| [协会公告](https://www.cnljxh.org.cn/news/?classid=10) |\n| ------------------------------------------------------ |\n| [10](https://rsshub.app/cnljxh/news/10)                |\n\n#### 行业新闻\n\n| [协会动态](https://www.cnljxh.org.cn/news/?classid=8) | [企业动态](https://www.cnljxh.org.cn/news/?classid=9) | [行业动态](https://www.cnljxh.org.cn/news/?classid=11) |\n| ----------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------ |\n| [8](https://rsshub.app/cnljxh/news/8)                 | [9](https://rsshub.app/cnljxh/news/9)                 | [11](https://rsshub.app/cnljxh/news/11)                |\n\n#### 政策法规\n\n| [政策法规](https://www.cnljxh.org.cn/news/?classid=12) |\n| ------------------------------------------------------ |\n| [12](https://rsshub.app/cnljxh/news/12)                |\n\n#### 行业标准\n\n| [国家标准](https://www.cnljxh.org.cn/news/?classid=13) | [行业标准](https://www.cnljxh.org.cn/news/?classid=14) | [团体标准](https://www.cnljxh.org.cn/news/?classid=15) |\n| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |\n| [13](https://rsshub.app/cnljxh/news/13)                | [14](https://rsshub.app/cnljxh/news/14)                | [15](https://rsshub.app/cnljxh/news/15)                |\n\n#### 减污降碳\n\n| [超低排放](https://www.cnljxh.org.cn/news/indexdp.php?classid=33) | [技术广角](https://www.cnljxh.org.cn/news/?classid=16) |\n| ----------------------------------------------------------------- | ------------------------------------------------------ |\n| [33](https://rsshub.app/cnljxh/news/33)                           | [16](https://rsshub.app/cnljxh/news/16)                |\n\n#### 市场价格\n\n| [价格行情](https://www.cnljxh.org.cn/price/?classid=299) | [双焦运费](https://www.cnljxh.org.cn/price/?classid=2143) | [价格汇总](https://www.cnljxh.org.cn/collect/?classid=10039) |\n| -------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------ |\n| [299](https://rsshub.app/cnljxh/price/299)               | [2143](https://rsshub.app/cnljxh/price/2143)              | [10039](https://rsshub.app/cnljxh/price/10039)               |\n\n#### 分析数据\n\n| [市场分析](https://www.cnljxh.org.cn/info/?classid=575) | [一周评述](https://www.cnljxh.org.cn/info/?classid=5573) | [核心数据](https://www.cnljxh.org.cn/info/?classid=5417) |\n| ------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |\n| [575](https://rsshub.app/cnljxh/info/575)               | [5573](https://rsshub.app/cnljxh/info/5573)              | [5417](https://rsshub.app/cnljxh/info/5417)              |\n\n#### 价格指数\n\n| [焦炭指数(MyCpic)](https://www.cnljxh.org.cn/date/?classid=5575) | [炼焦煤指数(MyCpic)](https://www.cnljxh.org.cn/date/?classid=5907) | [山西焦炭价格指数（SCSPI）](https://www.cnljxh.org.cn/news/index.php?classid=34) | [中价·新华焦煤价格指数（CCP）](https://www.cnljxh.org.cn/news/index.php?classid=35) |\n| ---------------------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |\n| [5575](https://rsshub.app/cnljxh/date/5575)                      | [5907](https://rsshub.app/cnljxh/date/5907)                        | [34](https://rsshub.app/cnljxh/news/34)                                          | [35](https://rsshub.app/cnljxh/news/35)                                             |\n\n#### 市场信息\n\n| [汾渭](https://www.cnljxh.org.cn/news/?classid=19) | [化工宝](https://www.cnljxh.org.cn/news/?classid=20) | [百川](https://www.cnljxh.org.cn/news/?classid=21) | [焦化市场信息](https://www.cnljxh.org.cn/news/?classid=22) | [中国焦化信息](https://www.cnljxh.org.cn/news/?classid=31) |\n| -------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |\n| [19](https://rsshub.app/cnljxh/news/19)            | [20](https://rsshub.app/cnljxh/news/20)              | [21](https://rsshub.app/cnljxh/news/21)            | [22](https://rsshub.app/cnljxh/news/22)                    | [31](https://rsshub.app/cnljxh/news/31)                    |\n\n</details>\n",
         "categories": [
           "new-media"
         ],
@@ -27057,7 +27322,7 @@ export default {
         "radar": [
           {
             "source": [
-              "www.cnljxh.org.cn/news"
+              "www.cnljxh.org.cn/:category"
             ]
           },
           {
@@ -27191,56 +27456,56 @@ export default {
             "source": [
               "www.cnljxh.org.cn/price/?classid=299"
             ],
-            "target": "/news/299"
+            "target": "/price/299"
           },
           {
             "title": "市场价格 - 双焦运费",
             "source": [
               "www.cnljxh.org.cn/price/?classid=2143"
             ],
-            "target": "/news/2143"
+            "target": "/price/2143"
           },
           {
             "title": "市场价格 - 价格汇总",
             "source": [
               "www.cnljxh.org.cn/collect/?classid=10039"
             ],
-            "target": "/news/10039"
+            "target": "/price/10039"
           },
           {
             "title": "分析数据 - 市场分析",
             "source": [
               "www.cnljxh.org.cn/info/?classid=575"
             ],
-            "target": "/news/575"
+            "target": "/info/575"
           },
           {
             "title": "分析数据 - 一周评述",
             "source": [
               "www.cnljxh.org.cn/info/?classid=5573"
             ],
-            "target": "/news/5573"
+            "target": "/info/5573"
           },
           {
             "title": "分析数据 - 核心数据",
             "source": [
               "www.cnljxh.org.cn/info/?classid=5417"
             ],
-            "target": "/news/5417"
+            "target": "/info/5417"
           },
           {
             "title": "价格指数 - 焦炭指数(MyCpic)",
             "source": [
               "www.cnljxh.org.cn/date/?classid=5575"
             ],
-            "target": "/news/5575"
+            "target": "/date/5575"
           },
           {
             "title": "价格指数 - 炼焦煤指数(MyCpic)",
             "source": [
               "www.cnljxh.org.cn/date/?classid=5907"
             ],
-            "target": "/news/5907"
+            "target": "/date/5907"
           },
           {
             "title": "价格指数 - 山西焦炭价格指数（SCSPI）",
@@ -33700,6 +33965,38 @@ export default {
         "location": "article.ts",
         "module": () => import('@/routes/dgtle/article.ts')
       },
+      "/feed": {
+        "path": "/feed",
+        "name": "兴趣",
+        "url": "www.dgtle.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/dgtle/feed",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.dgtle.com/feed"
+            ],
+            "target": "/feed"
+          }
+        ],
+        "view": 0,
+        "location": "feed.ts",
+        "module": () => import('@/routes/dgtle/feed.ts')
+      },
       "/news/:id?": {
         "path": "/news/:id?",
         "name": "鲸闻",
@@ -33783,6 +34080,38 @@ export default {
         "view": 0,
         "location": "news.ts",
         "module": () => import('@/routes/dgtle/news.ts')
+      },
+      "/video": {
+        "path": "/video",
+        "name": "视频",
+        "url": "www.dgtle.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/dgtle/video",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.dgtle.com/video"
+            ],
+            "target": "/video"
+          }
+        ],
+        "view": 0,
+        "location": "video.ts",
+        "module": () => import('@/routes/dgtle/video.ts')
       }
     },
     "name": "数字尾巴",
@@ -37819,6 +38148,52 @@ export default {
   },
   "ecnu": {
     "routes": {
+      "/bksy": {
+        "path": "/bksy",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/bksy",
+        "radar": [
+          {
+            "source": [
+              "bksy.ecnu.edu.cn"
+            ],
+            "target": "/bksy"
+          }
+        ],
+        "name": "本科生院通知",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "bksy.ts",
+        "module": () => import('@/routes/ecnu/bksy.ts')
+      },
+      "/cee": {
+        "path": "/cee",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/cee",
+        "radar": [
+          {
+            "source": [
+              "cee.ecnu.edu.cn"
+            ],
+            "target": "/cee"
+          }
+        ],
+        "name": "通信与电子工程学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "cee.ts",
+        "module": () => import('@/routes/ecnu/cee.ts')
+      },
       "/acm/contest/:category?": {
         "path": "/acm/contest/:category?",
         "categories": [
@@ -37853,6 +38228,190 @@ export default {
         "location": "contest.ts",
         "module": () => import('@/routes/ecnu/contest.ts')
       },
+      "/cs": {
+        "path": "/cs",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/cs",
+        "radar": [
+          {
+            "source": [
+              "cs.ecnu.edu.cn"
+            ],
+            "target": "/cs"
+          }
+        ],
+        "name": "计算机科学与技术学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "cs.ts",
+        "module": () => import('@/routes/ecnu/cs.ts')
+      },
+      "/dase": {
+        "path": "/dase",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/dase",
+        "radar": [
+          {
+            "source": [
+              "dase.ecnu.edu.cn"
+            ],
+            "target": "/dase"
+          }
+        ],
+        "name": "数据科学与工程学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "dase.ts",
+        "module": () => import('@/routes/ecnu/dase.ts')
+      },
+      "/dx": {
+        "path": "/dx",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/dx",
+        "radar": [
+          {
+            "source": [
+              "dx.ecnu.edu.cn"
+            ],
+            "target": "/dx"
+          }
+        ],
+        "name": "大夏书院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "dx.ts",
+        "module": () => import('@/routes/ecnu/dx.ts')
+      },
+      "/dxb": {
+        "path": "/dxb",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/dxb",
+        "radar": [
+          {
+            "source": [
+              "dxb.ecnu.edu.cn"
+            ],
+            "target": "/dxb"
+          }
+        ],
+        "name": "地球科学学部通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "dxb.ts",
+        "module": () => import('@/routes/ecnu/dxb.ts')
+      },
+      "/ed": {
+        "path": "/ed",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/ed",
+        "radar": [
+          {
+            "source": [
+              "ed.ecnu.edu.cn"
+            ],
+            "target": "/ed"
+          }
+        ],
+        "name": "教育学部通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "ed.ts",
+        "module": () => import('@/routes/ecnu/ed.ts')
+      },
+      "/geoai": {
+        "path": "/geoai",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/geoai",
+        "radar": [
+          {
+            "source": [
+              "geoai.ecnu.edu.cn"
+            ],
+            "target": "/geoai"
+          }
+        ],
+        "name": "空间人工智能学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "geoai.ts",
+        "module": () => import('@/routes/ecnu/geoai.ts')
+      },
+      "/ghcollege": {
+        "path": "/ghcollege",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/ghcollege",
+        "radar": [
+          {
+            "source": [
+              "www.ghcollege.ecnu.edu.cn"
+            ],
+            "target": "/ghcollege"
+          }
+        ],
+        "name": "光华书院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "ghcollege.ts",
+        "module": () => import('@/routes/ecnu/ghcollege.ts')
+      },
+      "/history": {
+        "path": "/history",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/history",
+        "radar": [
+          {
+            "source": [
+              "history.ecnu.edu.cn"
+            ],
+            "target": "/history"
+          }
+        ],
+        "name": "历史学系通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "history.ts",
+        "module": () => import('@/routes/ecnu/history.ts')
+      },
       "/jwc": {
         "path": "/jwc",
         "categories": [
@@ -37879,6 +38438,75 @@ export default {
         ],
         "location": "jwc.ts",
         "module": () => import('@/routes/ecnu/jwc.ts')
+      },
+      "/mxcsy": {
+        "path": "/mxcsy",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/mxcsy",
+        "radar": [
+          {
+            "source": [
+              "mxcsy.ecnu.edu.cn"
+            ],
+            "target": "/mxcsy"
+          }
+        ],
+        "name": "孟宪承书院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "mxcsy.ts",
+        "module": () => import('@/routes/ecnu/mxcsy.ts')
+      },
+      "/philo": {
+        "path": "/philo",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/philo",
+        "radar": [
+          {
+            "source": [
+              "www.philo.ecnu.edu.cn"
+            ],
+            "target": "/philo"
+          }
+        ],
+        "name": "哲学系通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "philo.ts",
+        "module": () => import('@/routes/ecnu/philo.ts')
+      },
+      "/sei": {
+        "path": "/sei",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/sei",
+        "radar": [
+          {
+            "source": [
+              "sei.ecnu.edu.cn"
+            ],
+            "target": "/sei"
+          }
+        ],
+        "name": "软件工程学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "sei.ts",
+        "module": () => import('@/routes/ecnu/sei.ts')
       },
       "/yjs": {
         "path": "/yjs",
@@ -37914,7 +38542,7 @@ export default {
     },
     "name": "East China Normal University 华东师范大学",
     "apiRoutes": {},
-    "url": "ecnu.edu.cn",
+    "url": "www.ecnu.edu.cn",
     "lang": "zh-CN"
   },
   "economist": {
@@ -44990,6 +45618,28 @@ export default {
     "url": "geocaching.com",
     "lang": "en"
   },
+  "gesiba": {
+    "routes": {
+      "*": {
+        "name": "Angebote",
+        "example": "/gesiba/verfuegbar=alle&plz[]=1100&plz[]=1120&size-from=45&size-to=80&rooms-from=2&rooms-to=3&betreuung=0",
+        "path": "*",
+        "maintainers": [
+          "sk22"
+        ],
+        "categories": [
+          "other"
+        ],
+        "description": "\nNote that, on https://www.gesiba.at/immobilien/wohnungen, filters are added to\nthe URL like `&filter[plz]=1100,1120`, but the endpoint used here expects it\nlike `&plz[]=1100&plz[]=1120`, if multiple values are passed to one parameter\n",
+        "location": "index.ts",
+        "module": () => import('@/routes/gesiba/index.ts')
+      }
+    },
+    "name": "Gesiba",
+    "apiRoutes": {},
+    "url": "gesiba.at",
+    "description": "Gemeinnützige Siedlungs- und Bau AG"
+  },
   "getdr": {
     "routes": {
       "/": {
@@ -47471,6 +48121,51 @@ export default {
         ],
         "location": "news.ts",
         "module": () => import('@/routes/google/news.ts')
+      },
+      "/play/:id/:lang?": {
+        "name": "Play Store Update",
+        "path": "/play/:id/:lang?",
+        "categories": [
+          "program-update"
+        ],
+        "example": "/google/play/net.dinglisch.android.taskerm",
+        "parameters": {
+          "id": "Package id, can be found in url",
+          "lang": {
+            "description": "language",
+            "options": [
+              {
+                "value": "en-us",
+                "label": "English"
+              },
+              {
+                "value": "zh-cn",
+                "label": "简体中文"
+              }
+            ],
+            "default": "en-us"
+          }
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": true,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "play.google.com/store/apps/details?id=:id"
+            ]
+          }
+        ],
+        "maintainers": [
+          "surwall"
+        ],
+        "location": "play.ts",
+        "module": () => import('@/routes/google/play.ts')
       },
       "/research": {
         "path": "/research",
@@ -63044,9 +63739,14 @@ export default {
   },
   "iwara": {
     "routes": {
-      "/users/:username?/:type?": {
-        "path": "/users/:username?/:type?",
-        "name": "Unknown",
+      "/users/:username/:type?": {
+        "path": "/users/:username/:type?",
+        "example": "/iwara/users/kelpie/video",
+        "parameters": {
+          "username": "username, can find in userpage",
+          "type": "content type, can be video or image, default is video"
+        },
+        "name": "User",
         "maintainers": [
           "Fatpandac"
         ],
@@ -63084,7 +63784,8 @@ export default {
         "radar": [
           {
             "source": [
-              "ecchi.iwara.tv/"
+              "www.iwara.tv/subscriptions/videos",
+              "www.iwara.tv/subscriptions/images"
             ]
           }
         ],
@@ -63092,7 +63793,7 @@ export default {
         "maintainers": [
           "FeCCC"
         ],
-        "url": "ecchi.iwara.tv/",
+        "url": "www.iwara.tv/",
         "description": "::: warning\n  This route requires username and password, therefore it's only available when self-hosting, refer to the [Deploy Guide](https://docs.rsshub.app/deploy/config#route-specific-configurations) for route-specific configurations.\n:::",
         "location": "subscriptions.ts",
         "module": () => import('@/routes/iwara/subscriptions.ts')
@@ -72084,7 +72785,7 @@ export default {
         "description": "Get company's LinkedIn posts by company ID",
         "features": {
           "requireConfig": false,
-          "requirePuppeteer": false,
+          "requirePuppeteer": true,
           "antiCrawler": false,
           "supportRadar": false,
           "supportBT": false,
@@ -87430,6 +88131,28 @@ export default {
     "url": "oeeee.com",
     "lang": "zh-CN"
   },
+  "oesw": {
+    "routes": {
+      "*": {
+        "name": "Immobilienangebot",
+        "example": "/oesw/sofort-verfuegbar/objectType=1&financingType=2&region=1020",
+        "path": "*",
+        "maintainers": [
+          "sk22"
+        ],
+        "categories": [
+          "other"
+        ],
+        "description": "Get your parameters on https://www.oesw.at under \"Immobilienangebot\".\nMake sure to remove the `?` at the beginning from the query parameters!",
+        "location": "index.ts",
+        "module": () => import('@/routes/oesw/index.ts')
+      }
+    },
+    "name": "ÖSW",
+    "apiRoutes": {},
+    "url": "oesw.at",
+    "description": "Österreichisches Siedlungswerk - Gemeinnützige Wohnungsaktiengesellschaft"
+  },
   "oilchem": {
     "routes": {
       "/:type?/:category?/:subCategory?": {
@@ -92307,16 +93030,65 @@ export default {
             "target": "/user/:id/tagged"
           }
         ],
-        "name": "User Profile - Picnob",
+        "name": "User Profile - Pixnoy",
         "maintainers": [
           "TonyRL",
           "micheal-death",
           "AiraNadih",
-          "DIYgod"
+          "DIYgod",
+          "hyoban",
+          "Rongronggg9"
         ],
         "view": 2,
         "location": "user.ts",
         "module": () => import('@/routes/picnob/user.ts')
+      }
+    },
+    "name": "Instagram",
+    "url": "www.instagram.com",
+    "lang": "en"
+  },
+  "picnob.info": {
+    "routes": {
+      "/user/:id/:type?": {
+        "path": "/user/:id/:type?",
+        "categories": [
+          "social-media"
+        ],
+        "example": "/picnob.info/user/xlisa_olivex",
+        "parameters": {
+          "id": "Instagram id",
+          "type": {
+            "description": "Type of profile page",
+            "default": "posts",
+            "options": [
+              {
+                "label": "Posts",
+                "value": "posts"
+              },
+              {
+                "label": "Stories",
+                "value": "stories"
+              }
+            ]
+          }
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "User Profile - Picnob",
+        "maintainers": [
+          "TonyRL"
+        ],
+        "view": 2,
+        "url": "picnob.info",
+        "location": "user.ts",
+        "module": () => import('@/routes/picnob.info/user.ts')
       }
     },
     "name": "Instagram",
@@ -123145,6 +123917,42 @@ export default {
     "url": "www.washingtonpost.com",
     "lang": "en"
   },
+  "wbv-gpa": {
+    "routes": {
+      "/:category?/:state?": {
+        "name": "Angebote",
+        "example": "/wbv-gpa/wohnungen/wien",
+        "path": "/:category?/:state?",
+        "maintainers": [
+          "sk22"
+        ],
+        "categories": [
+          "other"
+        ],
+        "description": "\nSearch housing by WBV-GPA, see \"Angebote\" menu item in https://www.wbv-gpa.at.\nFiltering by state is done client-side.\n",
+        "parameters": {
+          "category": "Anything behind `/angebote/` in the URL. Default: `wohnungen`",
+          "state": "Optionally filter by Austrian state (`wien`, `steiermark`, ...)"
+        },
+        "radar": [
+          {
+            "source": [
+              "https://www.wbv-gpa.at/wohnungen/",
+              "https://www.wbv-gpa.at/angebote//:category"
+            ],
+            "target": "/:category"
+          }
+        ],
+        "location": "index.ts",
+        "module": () => import('@/routes/wbv-gpa/index.ts')
+      }
+    },
+    "name": "WBV-GPA",
+    "apiRoutes": {},
+    "description": "Wohnbauvereinigung für Privatangestellte - Gemeinnützige Gesellschaft mit beschränkter Haftung",
+    "url": "wbv-gpa.at",
+    "lang": "de"
+  },
   "wchscu": {
     "routes": {
       "/recruit": {
@@ -124163,8 +124971,14 @@ export default {
           "routeParams": "额外参数；请参阅上面的说明和表格"
         },
         "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
+          "requireConfig": [
+            {
+              "name": "WEIBO_COOKIES",
+              "optional": true,
+              "description": ""
+            }
+          ],
+          "requirePuppeteer": true,
           "antiCrawler": false,
           "supportBT": false,
           "supportPodcast": false,
@@ -124190,8 +125004,14 @@ export default {
           "routeParams": "额外参数；请参阅上面的说明和表格"
         },
         "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
+          "requireConfig": [
+            {
+              "name": "WEIBO_COOKIES",
+              "optional": true,
+              "description": ""
+            }
+          ],
+          "requirePuppeteer": true,
           "antiCrawler": false,
           "supportBT": false,
           "supportPodcast": false,
@@ -124313,7 +125133,7 @@ export default {
               "description": ""
             }
           ],
-          "requirePuppeteer": false,
+          "requirePuppeteer": true,
           "antiCrawler": true,
           "supportBT": false,
           "supportPodcast": false,
@@ -124398,8 +125218,14 @@ export default {
           }
         },
         "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
+          "requireConfig": [
+            {
+              "name": "WEIBO_COOKIES",
+              "optional": true,
+              "description": ""
+            }
+          ],
+          "requirePuppeteer": true,
           "antiCrawler": false,
           "supportBT": false,
           "supportPodcast": false,
@@ -124425,7 +125251,7 @@ export default {
     "name": "微博",
     "apiRoutes": {},
     "url": "weibo.com",
-    "description": "::: warning\n微博会针对请求的来源地区返回不同的结果。一个已知的例子为：部分视频因未知原因仅限中国大陆境内访问 (CDN 域名为 `locallimit.us.sinaimg.cn` 而非 `f.video.weibocdn.com`)。若一条微博含有这种视频且 RSSHub 实例部署在境外，抓取到的微博可能不含视频。将 RSSHub 部署在境内有助于抓取这种视频，但阅读器也必须处于境内网络环境以加载视频。\n:::\n\n对于微博内容，在 `routeParams` 参数中以 query string 格式指定选项，可以控制输出的样式\n\n| 键                         | 含义                                                               | 接受的值       | 默认值                              |\n| -------------------------- | ------------------------------------------------------------------ | -------------- | ----------------------------------- |\n| readable                   | 是否开启细节排版可读性优化                                         | 0/1/true/false | false                               |\n| authorNameBold             | 是否加粗作者名字                                                   | 0/1/true/false | false                               |\n| showAuthorInTitle          | 是否在标题处显示作者                                               | 0/1/true/false | false（`/weibo/keyword/`中为 true） |\n| showAuthorInDesc           | 是否在正文处显示作者                                               | 0/1/true/false | false（`/weibo/keyword/`中为 true） |\n| showAuthorAvatarInDesc     | 是否在正文处显示作者头像（若阅读器会提取正文图片，不建议开启）     | 0/1/true/false | false                               |\n| showEmojiForRetweet        | 显示 “🔁” 取代 “转发” 两个字                                       | 0/1/true/false | false                               |\n| showRetweetTextInTitle     | 在标题出显示转发评论（置为 false 则在标题只显示被转发微博）        | 0/1/true/false | true                                |\n| addLinkForPics             | 为图片添加可点击的链接                                             | 0/1/true/false | false                               |\n| showTimestampInDescription | 在正文处显示被转发微博的时间戳                                     | 0/1/true/false | false                               |\n| widthOfPics                | 微博配图宽（生效取决于阅读器）                                     | 不指定 / 数字  | 不指定                              |\n| heightOfPics               | 微博配图高（生效取决于阅读器）                                     | 不指定 / 数字  | 不指定                              |\n| sizeOfAuthorAvatar         | 作者头像大小                                                       | 数字           | 48                                  |\n| displayVideo               | 是否直接显示微博视频和 Live Photo，只在博主或个人时间线 RSS 中有效 | 0/1/true/false | true                                |\n| displayArticle             | 是否直接显示微博文章，只在博主或个人时间线 RSS 中有效              | 0/1/true/false | false                               |\n| displayComments            | 是否直接显示热门评论，只在博主或个人时间线 RSS 中有效              | 0/1/true/false | false                               |\n| showEmojiInDescription     | 是否展示正文中的微博表情，关闭则替换为 `[表情名]`                  | 0/1/true/false | true                                |\n| showLinkIconInDescription  | 是否展示正文中的链接图标                                           | 0/1/true/false | true                                |\n| preferMobileLink           | 是否使用移动版链接（默认使用 PC 版）                               | 0/1/true/false | false                               |\n| showRetweeted              | 是否显示转发的微博                                                 | 0/1/true/false | true                               |\n| showBloggerIcons           | 是否显示评论中博主的标志，只在显示热门评论时有效                                           | 0/1/true/false | false                               |\n\n指定更多与默认值不同的参数选项可以改善 RSS 的可读性，如\n\n[https://rsshub.app/weibo/user/1642909335/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=0&addLinkForPics=1&showTimestampInDescription=1&showTimestampInDescription=1&heightOfPics=150](https://rsshub.app/weibo/user/1642909335/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=0&addLinkForPics=1&showTimestampInDescription=1&showTimestampInDescription=1&heightOfPics=150)\n\n的效果为\n\n<img loading=\"lazy\" src=\"/img/readable-weibo.png\" alt=\"微博小秘书的可读微博 RSS\" />",
+    "description": "::: warning\n微博会针对请求的来源地区返回不同的结果。一个已知的例子为：部分视频因未知原因仅限中国大陆境内访问 (CDN 域名为 `locallimit.us.sinaimg.cn` 而非 `f.video.weibocdn.com`)。若一条微博含有这种视频且 RSSHub 实例部署在境外，抓取到的微博可能不含视频。将 RSSHub 部署在境内有助于抓取这种视频，但阅读器也必须处于境内网络环境以加载视频。\n:::\n\n::: warning\n大部分路由均需要 Cookies 才能获取。优先使用 `WEIBO_COOKIES`；未设置时尝试使用 Puppeteer 获取访客 Cookies。部分路由不支持访客访问，则必须设置 `WEIBO_COOKIES`，详见各个路由的文档。\n:::\n\n对于微博内容，在 `routeParams` 参数中以 query string 格式指定选项，可以控制输出的样式\n\n| 键                         | 含义                                                               | 接受的值       | 默认值                              |\n| -------------------------- | ------------------------------------------------------------------ | -------------- | ----------------------------------- |\n| readable                   | 是否开启细节排版可读性优化                                         | 0/1/true/false | false                               |\n| authorNameBold             | 是否加粗作者名字                                                   | 0/1/true/false | false                               |\n| showAuthorInTitle          | 是否在标题处显示作者                                               | 0/1/true/false | false（`/weibo/keyword/`中为 true） |\n| showAuthorInDesc           | 是否在正文处显示作者                                               | 0/1/true/false | false（`/weibo/keyword/`中为 true） |\n| showAuthorAvatarInDesc     | 是否在正文处显示作者头像（若阅读器会提取正文图片，不建议开启）     | 0/1/true/false | false                               |\n| showEmojiForRetweet        | 显示 “🔁” 取代 “转发” 两个字                                       | 0/1/true/false | false                               |\n| showRetweetTextInTitle     | 在标题出显示转发评论（置为 false 则在标题只显示被转发微博）        | 0/1/true/false | true                                |\n| addLinkForPics             | 为图片添加可点击的链接                                             | 0/1/true/false | false                               |\n| showTimestampInDescription | 在正文处显示被转发微博的时间戳                                     | 0/1/true/false | false                               |\n| widthOfPics                | 微博配图宽（生效取决于阅读器）                                     | 不指定 / 数字  | 不指定                              |\n| heightOfPics               | 微博配图高（生效取决于阅读器）                                     | 不指定 / 数字  | 不指定                              |\n| sizeOfAuthorAvatar         | 作者头像大小                                                       | 数字           | 48                                  |\n| displayVideo               | 是否直接显示微博视频和 Live Photo，只在博主或个人时间线 RSS 中有效 | 0/1/true/false | true                                |\n| displayArticle             | 是否直接显示微博文章，只在博主或个人时间线 RSS 中有效              | 0/1/true/false | false                               |\n| displayComments            | 是否直接显示热门评论，只在博主或个人时间线 RSS 中有效              | 0/1/true/false | false                               |\n| showEmojiInDescription     | 是否展示正文中的微博表情，关闭则替换为 `[表情名]`                  | 0/1/true/false | true                                |\n| showLinkIconInDescription  | 是否展示正文中的链接图标                                           | 0/1/true/false | true                                |\n| preferMobileLink           | 是否使用移动版链接（默认使用 PC 版）                               | 0/1/true/false | false                               |\n| showRetweeted              | 是否显示转发的微博                                                 | 0/1/true/false | true                               |\n| showBloggerIcons           | 是否显示评论中博主的标志，只在显示热门评论时有效                                           | 0/1/true/false | false                               |\n\n指定更多与默认值不同的参数选项可以改善 RSS 的可读性，如\n\n[https://rsshub.app/weibo/user/1642909335/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=0&addLinkForPics=1&showTimestampInDescription=1&showTimestampInDescription=1&heightOfPics=150](https://rsshub.app/weibo/user/1642909335/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=0&addLinkForPics=1&showTimestampInDescription=1&showTimestampInDescription=1&heightOfPics=150)\n\n的效果为\n\n<img loading=\"lazy\" src=\"/img/readable-weibo.png\" alt=\"微博小秘书的可读微博 RSS\" />",
     "lang": "zh-CN"
   },
   "wellcee": {
@@ -124948,6 +125774,28 @@ export default {
     "apiRoutes": {},
     "url": "cs.whu.edu.cn",
     "lang": "zh-CN"
+  },
+  "wiensued": {
+    "routes": {
+      "*": {
+        "name": "Objekte",
+        "example": "/wiensued/city=Wien&search=&space-from=30&space-to=100&room-from=2&room-to=4&rent=1&property=1&state[]=inplanung&state[]=inbau&state[]=sofort&state[]=bestand",
+        "path": "*",
+        "maintainers": [
+          "sk22"
+        ],
+        "categories": [
+          "other"
+        ],
+        "description": "\nPass in the parameters (e.g. `city=Wien&state[]=sofort`) and/or the path\nleading up to the listing (e.g. `wohnen/sofort-verfuegbar`)\n",
+        "location": "index.ts",
+        "module": () => import('@/routes/wiensued/index.ts')
+      }
+    },
+    "name": "Wien-Süd",
+    "apiRoutes": {},
+    "url": "wiensued.at",
+    "description": "Gemeinnützige Bau- u. Wohnungsgenossenschaft „Wien-Süd“ eingetragene Genossenschaft m.b.H."
   },
   "wikinews": {
     "routes": {
@@ -129030,6 +129878,58 @@ export default {
     "zh": {
       "name": "韩联社"
     }
+  },
+  "ynet": {
+    "routes": {
+      "/list/:category?/:id?": {
+        "path": "/list/:category?/:id?",
+        "name": "列表",
+        "url": "ynet.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/ynet/list/news/2121t76",
+        "parameters": {
+          "category": {
+            "description": "分类，默认为 `news`，可在对应分类页 URL 中找到"
+          },
+          "id": {
+            "description": "列表 ID，可在对应列表页 URL 中找到"
+          }
+        },
+        "description": ":::tip\n订阅 [北青快讯](https://news.ynet.com/list/2121t76.html)，其源网址为 `https://news.ynet.com/list/2121t76.html`，请参考该 URL 指定部分构成参数，此时路由为 [`/ynet/list/news/2121t76`](https://rsshub.app/ynet/list/news/2121t76)。\n:::\n",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "ynet.com"
+            ]
+          }
+        ],
+        "view": 0,
+        "location": "list.ts",
+        "module": () => import('@/routes/ynet/list.ts')
+      }
+    },
+    "name": "北青网",
+    "apiRoutes": {},
+    "url": "ynet.com",
+    "categories": [
+      "new-media"
+    ],
+    "description": "",
+    "lang": "zh-CN"
   },
   "yoasobi-music": {
     "routes": {
