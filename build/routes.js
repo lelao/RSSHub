@@ -126261,6 +126261,31 @@ export default {
     "url": "wnacg.org",
     "lang": "zh-TW"
   },
+  "wogem": {
+    "routes": {
+      "/:page?": {
+        "name": "Angebote",
+        "example": "/wogem/angebote?filter=Graz",
+        "path": "/:page?",
+        "maintainers": [
+          "sk22"
+        ],
+        "categories": [
+          "other"
+        ],
+        "description": "Pass in the name of the php file, e.g. `angebote` for `/de/angebote.php``.",
+        "parameters": {
+          "page": "Page name, e.g. `angebote` for `angebote.php. Defaults to `angebote`"
+        },
+        "location": "index.ts",
+        "module": () => import('@/routes/wogem/index.ts')
+      }
+    },
+    "name": "WOGEM",
+    "apiRoutes": {},
+    "url": "wogem.at",
+    "description": "Gemeinnützige Wohn-, Bau- und Siedlungsgesellschaft m.b.H"
+  },
   "wohnnet": {
     "routes": {
       "/:category/:region/*": {
