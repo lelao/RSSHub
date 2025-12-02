@@ -95585,6 +95585,56 @@ export default {
     "url": "priconne-redive.jp",
     "lang": "ja"
   },
+  "producereport": {
+    "routes": {
+      "/:category{.+}?": {
+        "path": "/:category{.+}?",
+        "name": "Category",
+        "url": "www.producereport.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/producereport/produce/fresh-fruits/apples",
+        "parameters": {
+          "category": {
+            "description": "Category, `Fresh Fruits - Apple` by default"
+          }
+        },
+        "description": ":::tip\nTo subscribe to [Apples](https://www.producereport.com/produce/fresh-fruits/apples), where the source URL is `https://www.producereport.com/produce/fresh-fruits/apples`, extract the certain parts from this URL to be used as parameters, resulting in the route as [`/producereport/produce/fresh-fruits/apples`](https://rsshub.app/producereport/produce/fresh-fruits/apples).\n:::\n",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.producereport.com/:category"
+            ],
+            "target": "/:category"
+          }
+        ],
+        "view": 0,
+        "location": "index.ts",
+        "module": () => import('@/routes/producereport/index.ts')
+      }
+    },
+    "name": "Produce Report",
+    "apiRoutes": {},
+    "url": "producereport.com",
+    "categories": [
+      "new-media"
+    ],
+    "description": "",
+    "lang": "en"
+  },
   "producthunt": {
     "routes": {
       "/today": {
