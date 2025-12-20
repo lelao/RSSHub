@@ -10074,6 +10074,7 @@ export default {
           "programming"
         ],
         "example": "/anthropic/engineering",
+        "parameters": {},
         "radar": [
           {
             "source": [
@@ -16383,7 +16384,8 @@ export default {
           "hyoban"
         ],
         "categories": [
-          "social-media"
+          "social-media",
+          "popular"
         ],
         "view": 3,
         "example": "/bilibili/ranking/all",
@@ -18333,6 +18335,39 @@ export default {
     "url": "bnext.com.tw",
     "lang": "zh-TW"
   },
+  "bntnews": {
+    "routes": {
+      "/:category?": {
+        "path": "/:category?",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/bntnews/bnt003000000",
+        "parameters": {
+          "category": "Category ID, see table below, default to Now (bnt008000000)"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "Category",
+        "maintainers": [
+          "iamsnn"
+        ],
+        "description": "| Beauty | Fashion | Star | Style+ | Photo | Life | Now |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| bnt003000000 | bnt002000000 | bnt004000000 | bnt007000000 | bnt009000000 | bnt005000000 | bnt008000000 |",
+        "location": "index.ts",
+        "module": () => import('@/routes/bntnews/index.ts')
+      }
+    },
+    "name": "bntnews",
+    "apiRoutes": {},
+    "url": "bntnews.co.kr",
+    "lang": "ko"
+  },
   "bnu": {
     "routes": {
       "/bs/:category?": {
@@ -19685,6 +19720,28 @@ export default {
     "url": "bupt.edu.cn",
     "lang": "zh-CN"
   },
+  "bwsg": {
+    "routes": {
+      "*": {
+        "name": "Angebote",
+        "example": "/bwsg/_vermarktungsart=miete&_objektart=wohnung&_zimmer=2,3&_wohnflaeche=45,70&_plz=1210,1220",
+        "path": "*",
+        "maintainers": [
+          "sk22"
+        ],
+        "categories": [
+          "other"
+        ],
+        "description": "\nCopy the query parameters for your https://www.bwsg.at/immobilien/immobilie-suchen\nsearch, omitting the leading `?`\n\n::: tip\nSince there's no parameter available that sorts by \"last added\" (and there's no\nobvious pattern to the default ordering), and since this RSS feed only fetches\nthe first page of results, you probably want to specify enough search\nparameters to make sure you only get one page of results – because else, your\nRSS feed might not get all items.\n:::",
+        "location": "index.ts",
+        "module": () => import('@/routes/bwsg/index.ts')
+      }
+    },
+    "name": "BWSG",
+    "apiRoutes": {},
+    "url": "bwsg.at",
+    "description": "BWS Gemeinnützige allgemeine Bau-, Wohn- und Siedlungsgenossenschaft, registrierte Genossenschaft mit beschränkter Haftung"
+  },
   "byau": {
     "routes": {
       "/news/:type_id": {
@@ -20391,6 +20448,67 @@ export default {
     "url": "cste.org.cn",
     "lang": "zh-CN"
   },
+  "canada.ca": {
+    "routes": {
+      "/news/:lang/:department?": {
+        "path": "/news/:lang/:department?",
+        "categories": [
+          "government"
+        ],
+        "example": "/canada.ca/news/en/departmentfinance",
+        "parameters": {
+          "lang": "Language, en or fr",
+          "department": "dprtmnt query value"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.canada.ca/:lang/department-finance.html",
+              "www.canada.ca/:lang/ministere-finances.html",
+              "www.canada.ca/:lang/department-finance/news/*",
+              "www.canada.ca/:lang/ministere-finances/nouvelles/*"
+            ],
+            "target": "/news/:lang/departmentfinance"
+          },
+          {
+            "source": [
+              "ised-isde.canada.ca/site/ised/:lang",
+              "ised-isde.canada.ca/site/isde/:lang",
+              "www.canada.ca/:lang/innovation-science-economic-development/news/*",
+              "www.canada.ca/:lang/innovation-sciences-developpement-economique/nouvelles/*"
+            ],
+            "target": "/news/:lang/departmentofindustry"
+          },
+          {
+            "source": [
+              "www.canada.ca/:lang/news/advanced-news-search/news-results.html",
+              "www.canada.ca/:lang/nouvelles/recherche-avancee-de-nouvelles/resultats-de-nouvelles.html"
+            ],
+            "target": "/news/:lang"
+          }
+        ],
+        "name": "News by Department",
+        "maintainers": [
+          "elibroftw"
+        ],
+        "description": "News from specific Canadian government departments",
+        "location": "news.ts",
+        "module": () => import('@/routes/canada.ca/news.ts')
+      }
+    },
+    "name": "Canada.ca",
+    "url": "www.canada.ca",
+    "description": "Government of Canada news by department",
+    "lang": "en"
+  },
   "cankaoxiaoxi": {
     "routes": {
       "/column/:id?": {
@@ -20607,6 +20725,129 @@ export default {
     "name": "Cara",
     "apiRoutes": {},
     "url": "cara.app",
+    "lang": "en"
+  },
+  "carousell": {
+    "routes": {
+      "/:region/:keyword": {
+        "path": "/:region/:keyword",
+        "categories": [
+          "shopping"
+        ],
+        "example": "/carousell/sg/iphone",
+        "parameters": {
+          "region": {
+            "description": "Region code",
+            "options": [
+              {
+                "value": "au",
+                "label": "Australia"
+              },
+              {
+                "value": "ca",
+                "label": "Canada"
+              },
+              {
+                "value": "hk",
+                "label": "Hong Kong"
+              },
+              {
+                "value": "id",
+                "label": "Indonesia"
+              },
+              {
+                "value": "my",
+                "label": "Malaysia"
+              },
+              {
+                "value": "nz",
+                "label": "New Zealand"
+              },
+              {
+                "value": "ph",
+                "label": "Philippines"
+              },
+              {
+                "value": "sg",
+                "label": "Singapore"
+              },
+              {
+                "value": "tw",
+                "label": "Taiwan"
+              }
+            ]
+          },
+          "keyword": {
+            "description": "Search keyword"
+          }
+        },
+        "name": "Keyword Search",
+        "maintainers": [
+          "TonyRL"
+        ],
+        "radar": [
+          {
+            "source": [
+              "au.carousell.com/search/:keyword"
+            ],
+            "target": "/au/:keyword"
+          },
+          {
+            "source": [
+              "ca.carousell.com/search/:keyword"
+            ],
+            "target": "/ca/:keyword"
+          },
+          {
+            "source": [
+              "www.carousell.com.hk/search/:keyword"
+            ],
+            "target": "/hk/:keyword"
+          },
+          {
+            "source": [
+              "id.carousell.com/search/:keyword"
+            ],
+            "target": "/id/:keyword"
+          },
+          {
+            "source": [
+              "www.carousell.com.my/search/:keyword"
+            ],
+            "target": "/my/:keyword"
+          },
+          {
+            "source": [
+              "nz.carousell.com/search/:keyword"
+            ],
+            "target": "/nz/:keyword"
+          },
+          {
+            "source": [
+              "www.carousell.ph/search/:keyword"
+            ],
+            "target": "/ph/:keyword"
+          },
+          {
+            "source": [
+              "www.carousell.sg/search/:keyword"
+            ],
+            "target": "/sg/:keyword"
+          },
+          {
+            "source": [
+              "tw.carousell.com/search/:keyword"
+            ],
+            "target": "/tw/:keyword"
+          }
+        ],
+        "location": "index.ts",
+        "module": () => import('@/routes/carousell/index.ts')
+      }
+    },
+    "name": "Carousell",
+    "apiRoutes": {},
+    "url": "carousell.com",
     "lang": "en"
   },
   "cartoonmad": {
@@ -34081,6 +34322,44 @@ export default {
         "location": "news.ts",
         "module": () => import('@/routes/dgtle/news.ts')
       },
+      "/tag/:id": {
+        "path": "/tag/:id",
+        "name": "标签",
+        "url": "www.dgtle.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/dgtle/tag/394",
+        "parameters": {
+          "id": {
+            "description": "标签 ID，可在对应标签页 URL 中找到"
+          }
+        },
+        "description": ":::tip\n订阅 [#手机讨论区](https://www.dgtle.com/tag-394-1.html)，其源网址为 `https://www.dgtle.com/tag-394-1.html`，请参考该 URL 指定部分构成参数，此时路由为 [`/dgtle/tag/394`](https://rsshub.app/dgtle/tag/394)。\n:::\n",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.dgtle.com/$tag-:id-\\d+.html"
+            ],
+            "target": "/tag/:id"
+          }
+        ],
+        "view": 0,
+        "location": "tag.ts",
+        "module": () => import('@/routes/dgtle/tag.ts')
+      },
       "/video": {
         "path": "/video",
         "name": "视频",
@@ -38148,6 +38427,29 @@ export default {
   },
   "ecnu": {
     "routes": {
+      "/art": {
+        "path": "/art",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/art",
+        "radar": [
+          {
+            "source": [
+              "art.ecnu.edu.cn"
+            ],
+            "target": "/art"
+          }
+        ],
+        "name": "美术学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "art.ts",
+        "module": () => import('@/routes/ecnu/art.ts')
+      },
       "/bksy": {
         "path": "/bksy",
         "categories": [
@@ -38193,6 +38495,75 @@ export default {
         ],
         "location": "cee.ts",
         "module": () => import('@/routes/ecnu/cee.ts')
+      },
+      "/chem": {
+        "path": "/chem",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/chem",
+        "radar": [
+          {
+            "source": [
+              "chem.ecnu.edu.cn"
+            ],
+            "target": "/chem"
+          }
+        ],
+        "name": "化学与分子工程学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "chem.ts",
+        "module": () => import('@/routes/ecnu/chem.ts')
+      },
+      "/chinese": {
+        "path": "/chinese",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/chinese",
+        "radar": [
+          {
+            "source": [
+              "chinese.ecnu.edu.cn"
+            ],
+            "target": "/chinese"
+          }
+        ],
+        "name": "国际汉语文化学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "chinese.ts",
+        "module": () => import('@/routes/ecnu/chinese.ts')
+      },
+      "/comm": {
+        "path": "/comm",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/comm",
+        "radar": [
+          {
+            "source": [
+              "comm.ecnu.edu.cn"
+            ],
+            "target": "/comm"
+          }
+        ],
+        "name": "传播学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "comm.ts",
+        "module": () => import('@/routes/ecnu/comm.ts')
       },
       "/acm/contest/:category?": {
         "path": "/acm/contest/:category?",
@@ -38439,6 +38810,29 @@ export default {
         "location": "jwc.ts",
         "module": () => import('@/routes/ecnu/jwc.ts')
       },
+      "/mks": {
+        "path": "/mks",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/mks",
+        "radar": [
+          {
+            "source": [
+              "mks.ecnu.edu.cn"
+            ],
+            "target": "/mks"
+          }
+        ],
+        "name": "马克思主义学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "mks.ts",
+        "module": () => import('@/routes/ecnu/mks.ts')
+      },
       "/mxcsy": {
         "path": "/mxcsy",
         "categories": [
@@ -38461,6 +38855,29 @@ export default {
         ],
         "location": "mxcsy.ts",
         "module": () => import('@/routes/ecnu/mxcsy.ts')
+      },
+      "/pharm": {
+        "path": "/pharm",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/pharm",
+        "radar": [
+          {
+            "source": [
+              "pharm.ecnu.edu.cn"
+            ],
+            "target": "/pharm"
+          }
+        ],
+        "name": "药学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "pharm.ts",
+        "module": () => import('@/routes/ecnu/pharm.ts')
       },
       "/philo": {
         "path": "/philo",
@@ -38485,6 +38902,75 @@ export default {
         "location": "philo.ts",
         "module": () => import('@/routes/ecnu/philo.ts')
       },
+      "/phy": {
+        "path": "/phy",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/phy",
+        "radar": [
+          {
+            "source": [
+              "phy.ecnu.edu.cn"
+            ],
+            "target": "/phy"
+          }
+        ],
+        "name": "物理与电子科学学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "phy.ts",
+        "module": () => import('@/routes/ecnu/phy.ts')
+      },
+      "/psy": {
+        "path": "/psy",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/psy",
+        "radar": [
+          {
+            "source": [
+              "psy.ecnu.edu.cn"
+            ],
+            "target": "/psy"
+          }
+        ],
+        "name": "心理与认知科学学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "psy.ts",
+        "module": () => import('@/routes/ecnu/psy.ts')
+      },
+      "/sees": {
+        "path": "/sees",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/sees",
+        "radar": [
+          {
+            "source": [
+              "sees.ecnu.edu.cn"
+            ],
+            "target": "/sees"
+          }
+        ],
+        "name": "生态与环境科学学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "sees.ts",
+        "module": () => import('@/routes/ecnu/sees.ts')
+      },
       "/sei": {
         "path": "/sei",
         "categories": [
@@ -38507,6 +38993,75 @@ export default {
         ],
         "location": "sei.ts",
         "module": () => import('@/routes/ecnu/sei.ts')
+      },
+      "/spm": {
+        "path": "/spm",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/spm",
+        "radar": [
+          {
+            "source": [
+              "spm.ecnu.edu.cn"
+            ],
+            "target": "/spm"
+          }
+        ],
+        "name": "公共管理学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "spm.ts",
+        "module": () => import('@/routes/ecnu/spm.ts')
+      },
+      "/stat": {
+        "path": "/stat",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/stat",
+        "radar": [
+          {
+            "source": [
+              "stat.ecnu.edu.cn"
+            ],
+            "target": "/stat"
+          }
+        ],
+        "name": "统计学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "stat.ts",
+        "module": () => import('@/routes/ecnu/stat.ts')
+      },
+      "/tyxx": {
+        "path": "/tyxx",
+        "categories": [
+          "university"
+        ],
+        "example": "/ecnu/tyxx",
+        "radar": [
+          {
+            "source": [
+              "tyxx.ecnu.edu.cn"
+            ],
+            "target": "/tyxx"
+          }
+        ],
+        "name": "体育与健康学院通知公告",
+        "maintainers": [
+          "FrozenStarrrr",
+          "ChiyoYuki",
+          "ECNU-minus"
+        ],
+        "location": "tyxx.ts",
+        "module": () => import('@/routes/ecnu/tyxx.ts')
       },
       "/yjs": {
         "path": "/yjs",
@@ -58433,6 +58988,39 @@ export default {
         "url": "huggingface.co/papers",
         "location": "daily-papers.ts",
         "module": () => import('@/routes/huggingface/daily-papers.ts')
+      },
+      "/models/:group": {
+        "path": "/models/:group",
+        "categories": [
+          "programming"
+        ],
+        "example": "/huggingface/models/deepseek-ai",
+        "parameters": {
+          "group": "The organization or user group name"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "huggingface.co/:group/models"
+            ],
+            "target": "/models/:group"
+          }
+        ],
+        "name": "Group Models",
+        "maintainers": [
+          "WuNein"
+        ],
+        "url": "huggingface.co",
+        "location": "models.ts",
+        "module": () => import('@/routes/huggingface/models.ts')
       }
     },
     "name": "Huggingface",
@@ -58912,6 +59500,27 @@ export default {
         ],
         "location": "index.ts",
         "module": () => import('@/routes/hupu/index.ts')
+      },
+      "/news/:team": {
+        "path": [
+          "/news/:team"
+        ],
+        "name": "队伍新闻",
+        "url": "m.hupu.com",
+        "maintainers": [
+          "hyoban"
+        ],
+        "example": "/news/Spurs",
+        "parameters": {
+          "team": {
+            "description": "全小写的英文队名，例如：spurs, lakers, warriors 等等"
+          }
+        },
+        "categories": [
+          "bbs"
+        ],
+        "location": "news.ts",
+        "module": () => import('@/routes/hupu/news.ts')
       }
     },
     "name": "虎扑",
@@ -84037,8 +84646,8 @@ export default {
         "radar": [
           {
             "source": [
-              "www3.nhk.or.jp/news/easy/",
-              "www3.nhk.or.jp/"
+              "news.web.nhk/news/easy/",
+              "news.web.nhk/"
             ]
           }
         ],
@@ -84046,7 +84655,7 @@ export default {
         "maintainers": [
           "Andiedie"
         ],
-        "url": "www3.nhk.or.jp/news/easy/",
+        "url": "news.web.nhk/news/easy/",
         "location": "news-web-easy.ts",
         "module": () => import('@/routes/nhk/news-web-easy.ts')
       },
@@ -88152,6 +88761,31 @@ export default {
     "apiRoutes": {},
     "url": "oesw.at",
     "description": "Österreichisches Siedlungswerk - Gemeinnützige Wohnungsaktiengesellschaft"
+  },
+  "oevw": {
+    "routes": {
+      "/:json?": {
+        "name": "ÖVW Suche",
+        "example": "/oevw/%7B%22rooms%22%3A%5B%222%22%2C%223%22%5D%7D",
+        "path": "/:json?",
+        "maintainers": [
+          "sk22"
+        ],
+        "categories": [
+          "other"
+        ],
+        "description": "\nWhen applying a filter on https://www.oevw.at/suche, a POST request is sent\nto https://www.oevw.at/suche/filter. You can take its JSON body, URL-encode it\n(`encodeURIComponent('{...}')`) and append it to the URL, see example URL.\nfor this route.",
+        "parameters": {
+          "json": "JSON request body, as sent to oevw.at/suche"
+        },
+        "location": "index.ts",
+        "module": () => import('@/routes/oevw/index.ts')
+      }
+    },
+    "name": "ÖVW",
+    "apiRoutes": {},
+    "url": "oevw.at",
+    "description": "Österreichisches Volkswohnungswerk, Gemeinnützige Ges.m.b.H."
   },
   "oilchem": {
     "routes": {
@@ -98869,6 +99503,43 @@ export default {
     "apiRoutes": {},
     "url": "readhub.cn",
     "lang": "zh-CN"
+  },
+  "readsomethingwonderful": {
+    "routes": {
+      "/": {
+        "path": "/",
+        "name": "Articles",
+        "categories": [
+          "blog"
+        ],
+        "example": "/readsomethingwonderful",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "readsomethingwonderful.com/"
+            ]
+          }
+        ],
+        "maintainers": [
+          "ttttmr"
+        ],
+        "location": "index.ts",
+        "module": () => import('@/routes/readsomethingwonderful/index.ts')
+      }
+    },
+    "name": "Read Something Wonderful",
+    "apiRoutes": {},
+    "url": "readsomethingwonderful.com",
+    "lang": "en"
   },
   "readwise": {
     "routes": {
@@ -109829,6 +110500,48 @@ export default {
     "url": "supchina.com",
     "lang": "zh-CN"
   },
+  "supercell": {
+    "routes": {
+      "/:game/blog/:locale?": {
+        "path": "/:game/blog/:locale?",
+        "categories": [
+          "game"
+        ],
+        "example": "/supercell/clashroyale/blog/zh",
+        "parameters": {
+          "game": "Game name, see below",
+          "locale": "Language code, see below, English by default"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "supercell.com/en/games/:game/:locale/blog"
+            ],
+            "target": "/:game/blog/:locale"
+          }
+        ],
+        "name": "Game Blog",
+        "maintainers": [
+          "fishyo"
+        ],
+        "description": "Supported games\n\n| Game              | Slug          |\n| ----------------- | ------------- |\n| Clash Royale      | clashroyale   |\n| Brawl Stars       | brawlstars    |\n| Clash of Clans    | clashofclans  |\n| Boom Beach        | boombeach     |\n| Hay Day           | hayday        |\n\nLanguage codes\n\n| Language           | Code    |\n| ------------------ | ------- |\n| English            |         |\n| 繁體中文           | zh      |\n| 简体中文           | zh-hans |\n| Français           | fr      |\n| Deutsch            | de      |\n| Indonesia          | id      |\n| Italiano           | it      |\n| 日本語             | ja      |\n| 한국어             | ko      |\n| Português          | pt      |\n| Русский            | ru      |\n| Español            | es      |",
+        "location": "blog.ts",
+        "module": () => import('@/routes/supercell/blog.ts')
+      }
+    },
+    "name": "Supercell",
+    "apiRoutes": {},
+    "url": "supercell.com",
+    "lang": "en"
+  },
   "surfshark": {
     "routes": {
       "/blog/:category{.+}?": {
@@ -114929,6 +115642,40 @@ export default {
         "location": "express.ts",
         "module": () => import('@/routes/techflowpost/express.ts')
       },
+      "/featured/:category?": {
+        "path": "/featured/:category?",
+        "categories": [
+          "finance"
+        ],
+        "view": 0,
+        "example": "/techflowpost/featured",
+        "parameters": {
+          "category": "分类，见下表，默认为全部"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "techflowpost.com/article/index.html"
+            ]
+          }
+        ],
+        "name": "精选",
+        "maintainers": [
+          "zhenlohuang"
+        ],
+        "url": "techflowpost.com/article/index.html",
+        "description": "| 全部 | 行业 & 项目观察 | 项目简介 | 项目动态 | 赛道解读 | 播客笔记 | 交易观察 | VC洞察 | 实用教程 | 人物故事 & 访谈 | 法律 & 监管动态 | 活动动态 | 交易所动态 |\n  | ---- | --------------- | -------- | -------- | -------- | -------- | -------- | ------ | -------- | --------------- | --------------- | -------- | ---------- |\n  |      | 2040            | 2046     | 2047     | 2045     | 2044     | 2043     | 2042   | 2041     | 2039            | 2033            | 2032     | 2031       |",
+        "location": "featured.ts",
+        "module": () => import('@/routes/techflowpost/featured.ts')
+      },
       "/": {
         "path": "/",
         "example": "/techflowpost",
@@ -115922,6 +116669,50 @@ export default {
     "apiRoutes": {},
     "url": "www.theblockbeats.info",
     "lang": "zh-CN"
+  },
+  "thebrain": {
+    "routes": {
+      "/blog": {
+        "path": "/blog",
+        "name": "Blog",
+        "url": "www.thebrain.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/thebrain/blog",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.thebrain.com/blog"
+            ],
+            "target": "/blog"
+          }
+        ],
+        "view": 0,
+        "location": "blog.ts",
+        "module": () => import('@/routes/thebrain/blog.ts')
+      }
+    },
+    "name": "TheBrain",
+    "apiRoutes": {},
+    "url": "thebrain.com",
+    "categories": [
+      "new-media"
+    ],
+    "description": "",
+    "lang": "en"
   },
   "thecover": {
     "routes": {
@@ -119181,11 +119972,50 @@ export default {
         },
         "name": "Posts",
         "maintainers": [
-          "Rakambda"
+          "Rakambda",
+          "PolarisStarnor"
         ],
         "description": "::: tip\nTumblr provides official RSS feeds for non \"dashboard only\" blogs, for instance [https://biketouring-nearby.tumblr.com](https://biketouring-nearby.tumblr.com/rss).\n:::",
         "location": "posts.ts",
         "module": () => import('@/routes/tumblr/posts.ts')
+      },
+      "/tagged/:tag": {
+        "path": "/tagged/:tag",
+        "categories": [
+          "social-media"
+        ],
+        "example": "/tumblr/tagged/nature",
+        "parameters": {
+          "tag": "Tag name (see `https://www.tumblr.com/docs/en/api/v2#tagged--get-posts-with-tag`)"
+        },
+        "radar": [],
+        "features": {
+          "requireConfig": [
+            {
+              "name": "TUMBLR_CLIENT_ID",
+              "description": "Please see above for details."
+            },
+            {
+              "name": "TUMBLR_CLIENT_SECRET",
+              "description": "Please see above for details."
+            },
+            {
+              "name": "TUMBLR_REFRESH_TOKEN",
+              "description": "Please see above for details."
+            }
+          ],
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "Tagged Posts",
+        "maintainers": [
+          "PolarisStarnor"
+        ],
+        "location": "tagged.ts",
+        "module": () => import('@/routes/tumblr/tagged.ts')
       }
     },
     "name": "Tumblr",
@@ -126881,6 +127711,44 @@ export default {
     "name": "X-MOL",
     "url": "x-mol.com",
     "lang": "zh-CN"
+  },
+  "x410": {
+    "name": "x410",
+    "routes": {
+      "/news": {
+        "path": "/news",
+        "name": "News",
+        "url": "x410.dev",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/x410/news",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "x410.dev"
+            ],
+            "target": "/news"
+          }
+        ],
+        "view": 0,
+        "location": "news.ts",
+        "module": () => import('@/routes/x410/news.ts')
+      }
+    },
+    "apiRoutes": {}
   },
   "x6d": {
     "routes": {
